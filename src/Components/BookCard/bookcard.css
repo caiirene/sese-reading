@@ -1,0 +1,196 @@
+.book-card {
+  display: flex; /* Use flexbox to align items in a row */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  align-items: center; /* Align items vertically in the center */
+  padding: 20px;
+  max-width: 100%; /* Ensures the card does not exceed the width of its container */
+  box-sizing: border-box;
+}
+
+.book-card-action-buttons {
+  display: flex; /* Align buttons horizontally */
+  justify-content: space-around; /* Distribute buttons evenly across the container */
+  padding-top: 10px; /* Space between paragraphs and buttons */
+}
+
+.action-button {
+  background-color: #98d7c2; /* Light mint green color */
+  color: white; /* Set the button text color to white */
+  font-weight: bold; /* Make the text bold */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Button padding - adjust as needed */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* Add more styling as needed */
+}
+
+/* Add hover effect for buttons */
+.action-button:hover {
+  background-color: #88c7b2; /* A slightly darker shade on hover */
+}
+
+.book-card-image-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-card-image {
+  width: 400px; /* Adjust width as needed */
+  height: auto; /* Adjust height as needed */
+  object-fit: cover; /* Ensures the image covers the area properly */
+  margin-bottom: 20px; 
+}
+
+.book-card-buttons {
+  display: flex;
+  flex-direction: row; /* Align buttons horizontally */
+  justify-content: space-between; /* Distribute buttons evenly */
+  align-items: center;
+  width: 100%; /* Take the full width of the card */
+  padding-top: 10px; /* Space between image and buttons */
+  margin-top: 20px; /* Add space above the button container */
+}
+
+.image-button {
+  padding: 18px 96px; /* Increased padding for a larger button */
+  margin-bottom: 60px; /* Space between buttons */
+  border: none;
+  border-radius: 85px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold; /* Optional: makes the text bold */
+  width: auto; /* Let the button size be determined by its content */
+  flex: 1;
+  margin: 0 35px;
+}
+
+.button-and-text:nth-child(1) .image-button {
+  background-color: #f6e0a4; /* Light rice-yellow */
+}
+
+.button-and-text:nth-child(1) .image-button:hover {
+  background-color: #e6d394; /* Slightly darker on hover */
+}
+
+.button-and-text:nth-child(2) .image-button {
+  background-color: #98d7c2; /* Light mint green */
+}
+
+.button-and-text:nth-child(2) .image-button:hover {
+  background-color: #88c7b2; /* Slightly darker on hover */
+}
+
+.button-and-text:nth-child(3) .image-button {
+  background-color: #3a5f5f; /* Darker mint green */
+}
+
+.button-and-text:nth-child(3) .image-button:hover {
+  background-color: #2a4f4f; /* Slightly darker on hover */
+}
+
+.book-card-buttons-and-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-and-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: -550px;
+}
+
+.book-card-title {
+  font-size: 1.5em;
+  color: #333;
+  margin: 10px 0;
+}
+
+.book-card-writer {
+  font-size: 1em;
+  color: #666;
+  margin: 5px 0;
+}
+
+.book-card-update {
+  text-align: justify;
+  color: #333;
+  padding: 10px 0;
+  font-size: 0.9em;
+}
+
+.book-card-read-btn {
+  padding: 10px 20px;
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: auto; /* Pushes the button to the bottom of the flex container */
+}
+
+.book-card-read-btn:hover {
+  background-color: #0055dd;
+}
+
+.book-card-paragraphs p {
+  margin-top: 10px; /* Adds space between the paragraphs */
+  text-align: left; /* Aligns text to the left */
+}
+
+.book-card-paragraphs p strong {
+  font-weight: bold; /* Makes the title bold */
+  color: #333; /* Optional: sets a color for the title */
+  margin-right: 5px; /* Adds some space between the title and the content */
+}
+
+.book-card-paragraphs p span {
+  /* This ensures that the text wraps and doesn't overflow */
+  white-space: normal;
+  word-wrap: break-word; /* Breaks the words at the end of the line if necessary */
+}
+
+
+@media (max-width: 768px) {
+  .book-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .book-card-image {
+    width: 100%; /* Full width on smaller screens */
+    height: auto; /* Adjust height to maintain aspect ratio */
+  }
+
+  .book-card-buttons {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .image-button {
+    width: 90%; /* Adjust button width for smaller screens */
+    margin-bottom: 8px; /* Space between buttons */
+  }
+
+  .book-card-details {
+    align-items: center;
+    width: 100%; /* Full width on smaller screens */
+    margin-left: 0; /* Reset margin */
+  }
+
+  .book-card-read-btn {
+    width: 90%; /* Adjust button width for smaller screens */
+  }
+}
