@@ -2,7 +2,9 @@ import React from 'react';
 import './Home.css'; // Make sure the path is correct based on your project structure
 
 // Import any other components you want to use on the Home page
-import NavBar from '/Users/Andrea/Desktop/sese-reading-main/src/Components/NavBar/NavBar.js';
+import NavBar from '../../Components/NavBar/NavBar';
+import BookShowcase from '../../Components/BookShowcase/BookShowcase';
+
 
 function Home() {
   // Home component can be a class-based or functional component
@@ -21,6 +23,7 @@ function Home() {
         {/* More components as needed */}
       </section>
       {/* ... other sections, footer, etc. ... */}
+      <BookShowcase/>
     </div>
   );
 }
