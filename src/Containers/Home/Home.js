@@ -7,7 +7,6 @@ function Home() {
 
   return (
     <div className="home">
-      <NavBar /> {}
       <header className="home-header">
         <h1>Welcome to My Bookstore</h1>
       </header>

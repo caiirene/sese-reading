@@ -12,11 +12,13 @@ import Signin from "./Components/users/signin";
 import Signup from "./Components/users/signup";
 import Account from "./Components/users/account";
 import UserTable from "./Components/users/table";
-
+import NavBar from "./Components/NavBar/NavBar";
+import Search from "./Components/Search/search";
 function App() {
   return (
     <Router>
       <div className="App">
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/book" element={<BookCard />} />
@@ -34,6 +36,8 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/account/:id" element={<Account />} />
           <Route path="/admin/users" element={<UserTable />} />
+
+          <Route path="/search" element={<Search/>} />
         </Routes>
       </div>
     </Router>
