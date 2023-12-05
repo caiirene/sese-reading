@@ -14,6 +14,7 @@ import Account from "./Components/users/account";
 import UserTable from "./Components/users/table";
 import NavBar from "./Components/NavBar/NavBar";
 import Search from "./Components/Search/search";
+import Detail from "./Components/Search/detail";
 function App() {
   return (
     <Router>
@@ -36,6 +37,8 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/account/:id" element={<Account />} />
           <Route path="/admin/users" element={<UserTable />} />
+          
+          <Route path="/detail/:id" element={<Detail/>} />
 
           <Route path="/search" element={<Search/>} />
         </Routes>

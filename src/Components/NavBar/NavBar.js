@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function NavBar() {
-  const { pathname } = useLocation();
+
   return (
     <nav
       className="navbar navbar-expand-lg"
