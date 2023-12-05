@@ -1,11 +1,13 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { NavLink, useLocation } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function NavBar() {
+  const { pathname } = useLocation();
   return (
     <nav
       className="navbar navbar-expand-lg"
-      style={{ backgroundColor: "#e3f2fd" }} 
+      style={{ backgroundColor: "#e3f2fd" }}
     >
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
@@ -23,46 +25,50 @@ function NavBar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="nav nav-underline">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <NavLink className="nav-link" to="/" exact>
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/book">
-              BookCard
-              </a>
+              <NavLink className="nav-link" to="/book" exact>
+                BookCard
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/authorzone">
-              AuthorZone
-              </a>
+              <NavLink className="nav-link" to="/authorzone" exact>
+                AuthorZone
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/bookshowcase">
-              BookShowcase
-              </a>
+              <NavLink className="nav-link" to="/bookshowcase" exact>
+                BookShowcase
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/myworks">
-              Myworks
-              </a>
+              <NavLink className="nav-link" to="/myworks" exact>
+                Myworks
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/creatework">
-              CreateWork
-              </a>
+              <NavLink className="nav-link" to="/creatework" exact>
+                CreateWork
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/bookshowcaseadministrators">
-              bookshowcaseadministrators
-              </a>
+              <NavLink
+                className="nav-link"
+                to="/bookshowcaseadministrators"
+                exact
+              >
+                bookshowcaseadministrators
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/search">
-              search
-              </a>
+              <NavLink className="nav-link" to="/search" exact>
+                search
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -84,6 +90,5 @@ function NavBar() {
     </nav>
   );
 }
-
 
 export default NavBar;
