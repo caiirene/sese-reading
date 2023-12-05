@@ -26,8 +26,9 @@ function Signup() {
   return (
     <div className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25 ">
-        <h1>Signup</h1>
+        <h1>Sign up</h1>
         {error && <div>{error}</div>}
+        <label className="text-start">Username</label>
         <input
           className="form-control mt-2"
           value={credentials.username}
@@ -38,6 +39,7 @@ function Signup() {
             })
           }
         />
+        <label className="text-start">Password</label>
         <input
           className="form-control mt-2"
           value={credentials.password}

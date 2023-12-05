@@ -19,7 +19,8 @@ function Signin() {
   return (
     <div  className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25">
-        <h1>Signin</h1>
+        <h1>Sign in</h1>
+        <label className="text-start">Username</label>
         <input
           className="form-control mt-2"
           value={credentials.username}
@@ -27,6 +28,7 @@ function Signin() {
             setCredentials({ ...credentials, username: e.target.value })
           }
         />
+        <label className="text-start">Password</label>
         <input
           className="form-control mt-3"
           value={credentials.password}

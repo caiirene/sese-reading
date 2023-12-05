@@ -57,26 +57,32 @@ function UserTable() {
   return (
     <div>
       <h1>User List</h1>
-      <table className="table">
+      <table className="table w-75 ms-5">
         <thead>
           <tr>
             <th>Username</th>
+            <th>Password</th>
             <th>First Name</th>
             <th>Last Name</th>
           </tr>
-          <tr>
+          <tr className="w-75">
             <td>
               <input
+                className="w-50"
                 value={user.username}
                 onChange={(e) => setUser({ ...user, username: e.target.value })}
               />
+            </td>
+            <td>
               <input
+                className="w-75"
                 value={user.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </td>
             <td>
               <input
+                className="w-75"
                 value={user.firstName}
                 onChange={(e) =>
                   setUser({ ...user, firstName: e.target.value })
@@ -85,6 +91,7 @@ function UserTable() {
             </td>
             <td>
               <input
+                className="w-75"
                 value={user.lastName}
                 onChange={(e) => setUser({ ...user, lastName: e.target.value })}
               />
@@ -95,16 +102,18 @@ function UserTable() {
                 onChange={(e) => setUser({ ...user, role: e.target.value })}
               >
                 <option value="USER">User</option>
-                <option value="ADMIN">Admin</option>
-                <option value="FACULTY">Faculty</option>
-                <option value="STUDENT">Student</option>
+                <option value="admin">Admin</option>
+                <option value="reader">Reader</option>
+                <option value="author">Author</option>
               </select>
             </td>
-            <td className="text-nowrap">
+            <td>
               <BsPlusCircleFill
                 onClick={createUser}
                 className="text-primary fs-1 text me-2"
               />
+            </td>
+            <td>
               <BsFillCheckCircleFill
                 onClick={updateUser}
                 className="me-2 text-success fs-1 text me-2"
@@ -118,6 +127,7 @@ function UserTable() {
               <td>
                 <Link to={`/account/${user._id}`}>{user.username}</Link>
               </td>
+              <td>{user.password}</td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td></td>
