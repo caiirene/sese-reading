@@ -8,8 +8,10 @@ function Signup() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
+    role: "reader", // default role
   });
   const navigate = useNavigate();
+
   const signup = async () => {
     try {
       await client.signup(credentials);
@@ -50,6 +52,21 @@ function Signup() {
             })
           }
         />
+        <label className="text-start">Role</label>
+        <select
+          className="form-control mt-2"
+          value={credentials.role}
+          onChange={(e) =>
+            setCredentials({
+              ...credentials,
+              role: e.target.value,
+            })
+          }
+        >
+          <option value="reader">Reader</option>
+          <option value="author">Author</option>
+          <option value="admin">Admin</option>
+        </select>
         <p className="mt-3">
           Already have an account? <Link to="/signin">Login</Link>
         </p>
