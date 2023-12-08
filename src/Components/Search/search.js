@@ -14,7 +14,6 @@ function SearchBook() {
   };
 
 
-
   return (
     <div className="mt-3">
       <h3>Find Your Book!</h3>
@@ -35,7 +34,6 @@ function SearchBook() {
           <Card book={bookData} />
         }
       </div>
-    
     </div>
   );
 }
