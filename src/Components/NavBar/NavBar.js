@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-function NavBar() {
 
+function NavBar() {
   return (
     <nav
       className="navbar navbar-expand-lg"
@@ -72,20 +72,20 @@ function NavBar() {
             </li>
           </ul>
         </div>
-        <div className="d-flex">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item flow-end btn btn-info">
-              <a className="nav-link" href="/signin">
-                Sign In
-              </a>
-            </li>
-            <li className="nav-item btn btn-info ms-2">
-              <a className="nav-link" href="/signup">
-                Sign Up
-              </a>
-            </li>
-          </ul>
-        </div>
+            <div className="d-flex">
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item flow-end btn btn-info">
+                  <a className="nav-link" href="/signin">
+                    Sign In
+                  </a>
+                </li>
+                <li className="nav-item btn btn-info ms-2">
+                  <a className="nav-link" href="/signup">
+                    Sign Up
+                  </a>
+                </li>
+              </ul>
+            </div>
       </div>
     </nav>
   );

@@ -12,6 +12,9 @@ function SearchBook() {
       console.log(res.data.items);
     });
   };
+
+
+
   return (
     <div className="mt-3">
       <h3>Find Your Book!</h3>
@@ -29,9 +32,10 @@ function SearchBook() {
       </div>
       <div className="d-flex flex-row flex-wrap row row-cols-auto mt-2 ms-5">
         {
-          <Card book={bookData}/>
+          <Card book={bookData} />
         }
       </div>
+    
     </div>
   );
 }
