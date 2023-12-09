@@ -15,14 +15,10 @@ function Signup() {
   const signup = async () => {
     try {
       await client.signup(credentials);
-      navigate("/account");
+      navigate("/profile");
     } catch (err) {
       setError(err.response.data.message);
     }
-  };
-
-  const back = async () => {
-    navigate("/");
   };
 
   return (
@@ -72,9 +68,6 @@ function Signup() {
         </p>
         <button className="btn btn-primary mt-3" type="button" onClick={signup}>
           Signup
-        </button>
-        <button className="btn btn-warning" type="button" onClick={back}>
-          Back
         </button>
       </div>
     </div>

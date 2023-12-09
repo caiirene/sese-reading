@@ -6,16 +6,14 @@ function Signin() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
+    isAuthenticated: false,
   });
   const navigate = useNavigate();
   const signin = async () => {
     await client.signin(credentials);
-    navigate("/account");
+    navigate("/profile");
   };
 
-  const back = async () => {
-    navigate("/");
-  };
   return (
     <div  className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25">
@@ -41,9 +39,6 @@ function Signin() {
         </p>
         <button className="btn btn-primary mt-3" onClick={signin}>
           Signin
-        </button>
-        <button className="btn btn-warning" type="button" onClick={back}>
-          Back
         </button>
       </div>
     </div>
