@@ -58,7 +58,7 @@ function Card({ book }) {
                   </div>
                   <div>
                     <button className="btn btn-outline-primary w-75">
-                      <div className="fs-6">Add to My List</div>
+                      <div className="fs-6">More Info</div>
                     </button>
                   </div>
                 </div>

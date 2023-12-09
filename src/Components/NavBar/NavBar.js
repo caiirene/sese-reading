@@ -32,13 +32,8 @@ function NavBar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/book" exact>
-                BookCard
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/authorzone" exact>
-                AuthorZone
+              <NavLink className="nav-link" to="/profile" exact>
+                Profile
               </NavLink>
             </li>
             <li className="nav-item">
