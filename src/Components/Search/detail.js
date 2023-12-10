@@ -1,12 +1,12 @@
-// Inside Detail.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const { bookId } = useParams();
   const [bookDetails, setBookDetails] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // Fetch book details using the bookId
     axios
@@ -20,6 +20,9 @@ function Detail() {
     return <div>Loading...</div>;
   }
   
+  const back = async () => {
+    navigate("/search");
+  };
 
   return (
     <div>
@@ -43,11 +46,10 @@ function Detail() {
       <br />
       <div>
         <a href={bookDetails.volumeInfo.previewLink}>
-          <button>More</button>
+          <button>Read</button>
         </a>
       </div>
-
-      <button>Add to My List</button>
+      <button onClick={back}>Back</button>
     </div>
   );
 }

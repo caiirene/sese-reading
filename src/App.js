@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { useEffect, useState } from "react";
 import Home from "./Containers/Home/Home";
 import BookCard from "./Components/BookCard/Bookcard";
 import BookShowcase from "./Components/BookShowcase/BookShowcase";
@@ -17,9 +18,9 @@ import Search from "./Components/Search/search";
 import Detail from "./Components/Search/detail";
 import store from "../src/Components/books/store";
 import BookList from "./Components/books/bookList";
-//import Admin from "./Components/admintest/admin";
-//import UserTable from "./Components/admintest/table";
 import { Provider } from "react-redux";
+import Profile from "./Components/Account/profile";
+import * as client from "../src/Components/books/client";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/book" element={<BookCard />} />
+            <Route path="/books" element={<BookList />} />
+            <Route path="/book/:bookId" element={<BookCard />} />
+
             <Route path="/authorzone" element={<AuthorZone />} />
             <Route path="/myworks" element={<Myworks />} />
             <Route path="/creatework" element={<CreateWork />} />
@@ -51,6 +54,7 @@ function App() {
 
             <Route path="/admin/users" element={<AdminUserTable />} />
             <Route path="/admin/books" element={<BookList />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </Router>

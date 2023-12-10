@@ -72,12 +72,7 @@ function Account() {
                 setAccount({ ...account, email: e.target.value })
               }
             />
-            <label>DOB</label>
-            <input
-              className="form-control mt-2"
-              value={account.dob}
-              onChange={(e) => setAccount({ ...account, dob: e.target.value })}
-            />
+            <label>Role</label>
             <select
               className="form-control mt-2"
               onChange={(e) => setAccount({ ...account, role: e.target.value })}
@@ -87,8 +82,8 @@ function Account() {
               <option value="AUTHOR">Faculty</option>
               <option value="READER">Student</option>
             </select>
-            <button className="btn btn-primary w-100 mt-2" onClick={save}>
-              Save
+            <button className="btn btn-primary w-100 mt-2 " onClick={save}>
+              <Link className="text-white text-decoration-none" to="/profile">Save</Link>
             </button>
             <button className="btn btn-danger w-100 mt-2" onClick={signout}>
               Signout
