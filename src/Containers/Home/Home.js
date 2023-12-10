@@ -1,23 +1,18 @@
-import React from 'react';
-import './Home.css'; // Make sure the path is correct based on your project structure
-
-// Import any other components you want to use on the Home page
-import NavBar from '/Users/Andrea/Desktop/sese-reading-main/src/Components/NavBar/NavBar.js';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Home.css";
+import { Link } from "react-router-dom";
+import BookList from "../../Components/books/bookList";
 function Home() {
-
-
   return (
     <div className="home">
-      <NavBar /> {}
       <header className="home-header">
-        <h1>Welcome to My Bookstore</h1>
+        <h1>Welcome to Bookstore</h1>
       </header>
       <section className="home-content">
-        {}
-        {}
+        <h2>Book List</h2>
       </section>
-      {/* ... other sections, footer, etc. ... */}
+      <BookList />
     </div>
   );
 }
