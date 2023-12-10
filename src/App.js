@@ -11,11 +11,14 @@ import BookShowcaseAdministrators from "./Components/BookShowcaseAdministrators/
 import Signin from "./Components/users/signin";
 import Signup from "./Components/users/signup";
 import Account from "./Components/users/account";
-import UserTable from "./Components/users/table";
+import AdminUserTable from "./Components/users/admintable";
 import NavBar from "./Components/NavBar/NavBar";
 import Search from "./Components/Search/search";
 import Detail from "./Components/Search/detail";
 import store from "../src/Components/books/store";
+import BookList from "./Components/books/bookList";
+//import Admin from "./Components/admintest/admin";
+//import UserTable from "./Components/admintest/table";
 import { Provider } from "react-redux";
 
 function App() {
@@ -40,16 +43,21 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/account" element={<Account />} />
             <Route path="/account/:id" element={<Account />} />
-            <Route path="/admin/users" element={<UserTable />} />
+            
 
             <Route path="/detail/:bookId" element={<Detail />} />
 
             <Route path="/search" element={<Search />} />
+
+            <Route path="/admin/users" element={<AdminUserTable />} />
+            <Route path="/admin/books" element={<BookList />} />
           </Routes>
         </div>
       </Router>
     </Provider>
   );
 }
+
+//<Route path="/admin/users" element={<UserTable />} />
 
 export default App;

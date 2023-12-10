@@ -4,6 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 function Account() {
   const { id } = useParams();
   const [account, setAccount] = useState(null);
+  const [userRole, setUserRole] = useState("USER");
   const navigate = useNavigate();
   const findUserById = async (id) => {
     const user = await client.findUserById(id);
@@ -13,6 +14,7 @@ function Account() {
   const fetchAccount = async () => {
     const account = await client.account();
     setAccount(account);
+    setUserRole(account.role)
   };
   useEffect(() => {
     if (id) {
@@ -91,9 +93,11 @@ function Account() {
             <button className="btn btn-danger w-100 mt-2" onClick={signout}>
               Signout
             </button>
-            <Link to="/admin/users" className="btn btn-warning w-100 mt-2 ">
-              Users
-            </Link>
+            {userRole === "ADMIN" && (
+              <Link to="/table" className="btn btn-warning w-100 mt-2">
+                Users
+              </Link>
+            )}
           </div>
         )}
       </div>

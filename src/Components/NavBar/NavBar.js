@@ -1,9 +1,28 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
+import { useNavigate, Link, useParams } from "react-router-dom";
 function NavBar() {
+  const { id } = useParams();
+  const [account, setAccount] = useState(null);
+  const [userRole, setUserRole] = useState("USER");
+
+  /*const fetchAccount = async () => {
+    const account = await client.account();
+    setAccount(account);
+    setUserRole(account.role)
+  };
+
+  useEffect(() => {
+    if (id) {
+      findUserById(id);
+    } else {
+      fetchAccount();
+    }
+  }, []);*/
+
   return (
     <nav
       className="navbar navbar-expand-lg"
@@ -70,25 +89,47 @@ function NavBar() {
                 search
               </NavLink>
             </li>
+
+            
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/users" exact>
+                Manage Users
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/books" exact>
+                Manage Books
+              </NavLink>
+            </li>
+
           </ul>
         </div>
-            <div className="d-flex">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item flow-end btn btn-info">
-                  <a className="nav-link" href="/signin">
-                    Sign In
-                  </a>
-                </li>
-                <li className="nav-item btn btn-info ms-2">
-                  <a className="nav-link" href="/signup">
-                    Sign Up
-                  </a>
-                </li>
-              </ul>
-            </div>
+        <div className="d-flex">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item flow-end btn btn-info">
+              <a className="nav-link" href="/signin">
+                Sign In
+              </a>
+            </li>
+            <li className="nav-item btn btn-info ms-2">
+              <a className="nav-link" href="/signup">
+                Sign Up
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
 }
 
 export default NavBar;
+
+
+/*{userRole === "ADMIN" &&
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/admin/users" exact>
+                Manage Users
+              </NavLink>
+            </li>}*/
