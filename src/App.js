@@ -12,7 +12,7 @@ import BookShowcaseAdministrators from "./Components/BookShowcaseAdministrators/
 import Signin from "./Components/users/signin";
 import Signup from "./Components/users/signup";
 import Account from "./Components/users/account";
-import AdminUserTable from "./Components/users/admintable";
+import UserTable from "./Components/users/table";
 import NavBar from "./Components/NavBar/NavBar";
 import Search from "./Components/Search/search";
 import Detail from "./Components/Search/detail";
@@ -20,7 +20,7 @@ import store from "../src/Components/books/store";
 import BookList from "./Components/books/bookList";
 import { Provider } from "react-redux";
 import Profile from "./Components/Account/profile";
-import * as client from "../src/Components/books/client";
+import BookAdmin from "./Components/BookAdmin/bookadmin";
 
 function App() {
   return (
@@ -52,8 +52,8 @@ function App() {
 
             <Route path="/search" element={<Search />} />
 
-            <Route path="/admin/users" element={<AdminUserTable />} />
-            <Route path="/admin/books" element={<BookList />} />
+            <Route path="/admin/users" element={<UserTable />} />
+            <Route path="/admin/books" element={<BookAdmin />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>

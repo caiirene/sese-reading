@@ -3,25 +3,23 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useNavigate, Link, useParams } from "react-router-dom";
-function NavBar() {
-  const { id } = useParams();
-  const [account, setAccount] = useState(null);
-  const [userRole, setUserRole] = useState("USER");
+import { useNavigate } from "react-router-dom";
 
-  /*const fetchAccount = async () => {
-    const account = await client.account();
-    setAccount(account);
-    setUserRole(account.role)
-  };
+
+function NavBar() {
+  const userData = localStorage.getItem("currentUser");
+  const userObj = JSON.parse(userData);
+  const [user, setUser] = useState(userObj);
+  const navigate = useNavigate();
+
+  const signOut = async() => {
+    localStorage.removeItem("currentUser");
+    setUser(null);
+    navigate("/");
+  }
 
   useEffect(() => {
-    if (id) {
-      findUserById(id);
-    } else {
-      fetchAccount();
-    }
-  }, []);*/
+  }, [user]);
 
   return (
     <nav
@@ -43,6 +41,8 @@ function NavBar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
+        {user?.role != "ADMIN" && (
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav nav-underline">
             <li className="nav-item">
@@ -84,22 +84,30 @@ function NavBar() {
                 search
               </NavLink>
             </li>
+            </ul>
+        </div>
+        )}
 
-            
-            <li className="nav-item">
+        {user?.role == "ADMIN" && (
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="nav nav-underline">
+              <li className="nav-item">
               <NavLink className="nav-link" to="/admin/users" exact>
                 Manage Users
               </NavLink>
-            </li>
-
-            <li className="nav-item">
+              </li>
+            
+              <li className="nav-item">
               <NavLink className="nav-link" to="/admin/books" exact>
                 Manage Books
               </NavLink>
             </li>
-
           </ul>
-        </div>
+        </div>)}
+            
+
+          
+        {user === null && (
         <div className="d-flex">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item flow-end btn btn-info">
@@ -107,6 +115,7 @@ function NavBar() {
                 Sign In
               </a>
             </li>
+            
             <li className="nav-item btn btn-info ms-2">
               <a className="nav-link" href="/signup">
                 Sign Up
@@ -114,6 +123,22 @@ function NavBar() {
             </li>
           </ul>
         </div>
+        )}
+
+        {user !== null && (
+        <div className="d-flex">
+          <ul className="navbar-nav ms-auto">
+            
+              
+              {user !== null && (
+                <li className="nav-item flow-end btn btn-info">
+                <a className="nav-link" onClick = {signOut}>
+                Sign Out
+                </a>
+                </li>
+              )}
+          </ul>
+        </div> )}
       </div>
     </nav>
   );

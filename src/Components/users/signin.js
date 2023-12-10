@@ -1,5 +1,5 @@
 import * as client from "./client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Signin() {
@@ -8,10 +8,25 @@ function Signin() {
     password: "",
     isAuthenticated: false,
   });
+  const [userId, setUserId] = useState({
+    userId: null,
+  });
+
+  
+  useEffect(() => {}, [userId]);
+
+
   const navigate = useNavigate();
   const signin = async () => {
-    await client.signin(credentials);
-    navigate("/profile");
+    const data = await client.signin(credentials); 
+    setUserId(data?._id);
+    if (userId !== null) {
+      setCredentials({ ...credentials, isAuthenticated: true });
+      const jsonString = JSON.stringify(data);
+      localStorage.setItem('currentUser', jsonString);
+    }
+    navigate("/");
+    window.location.reload();
   };
 
   return (
