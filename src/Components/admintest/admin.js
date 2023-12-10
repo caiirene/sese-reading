@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill }
-  from "react-icons/bs";
-import * as client from "./client";
 import { Link } from "react-router-dom";
-function UserTable() {
+import {
+  BsTrash3Fill,
+  BsFillCheckCircleFill,
+  BsPencil,
+  BsPlusCircleFill,
+} from "react-icons/bs";
+import * as client from "../users/client";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+function Admin() {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({ username: "", password: "", role: "USER" });
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    role: "USER",
+  });
+  const fetchUsers = async () => {
+    const users = await client.findAllUsers();
+    setUsers(users);
+  };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
   const createUser = async () => {
     try {
       const newUser = await client.createUser(user);
@@ -38,13 +55,10 @@ function UserTable() {
       console.log(err);
     }
   };
-  const fetchUsers = async () => {
-    const users = await client.findAllUsers();
-    setUsers(users);
-  };
-  useEffect(() => { fetchUsers(); }, []);
+
   return (
     <div className="text-center">
+      <h2>Admin Portal</h2>
       <table className="table mx-auto">
         <thead>
           <tr>
@@ -54,21 +68,42 @@ function UserTable() {
             <th>Last Name</th>
             <th>User Role</th>
           </tr>
-          <tr>
+          <tr className="w-75" >
             <td>
-              <input className="w-75" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}/>
+              <input
+                className="w-75"
+                value={user.username}
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
+              />
             </td>
             <td>
-                <input className="w-75" value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })}/>
+              <input
+                className="w-75"
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+              />
             </td>
             <td>
-              <input className="w-75" value={user.firstName} onChange={(e) => setUser({ ...user, firstName: e.target.value })}/>
+              <input
+                className="w-75"
+                value={user.firstName}
+                onChange={(e) =>
+                  setUser({ ...user, firstName: e.target.value })
+                }
+              />
             </td>
             <td>
-              <input className="w-75" value={user.lastName} onChange={(e) => setUser({ ...user, lastName: e.target.value })}/>
+              <input
+                className="w-75 d-flex "
+                value={user.lastName}
+                onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+              />
             </td>
             <td>
-              <select value={user.role} onChange={(e) => setUser({ ...user, role: e.target.value })}>
+              <select 
+                value={user.role}
+                onChange={(e) => setUser({ ...user, role: e.target.value })}
+              >
                 <option value="USER">User</option>
                 <option value="admin">Admin</option>
                 <option value="reader">Reader</option>
@@ -84,29 +119,30 @@ function UserTable() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {
+          users.map((user) => (
             <tr key={user._id}>
-              <Link to={`/project/account/${user._id}`}>
-                {user.username}
-              </Link>
+              <td>
+                <Link to={`/account/${user._id}`}>{user.username}</Link>
+              </td>
               <td>{user.password}</td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.role}</td>
-              <td>
-                <td className="text-nowrap">
-                <button className="btn btn-danger w-50 me-2">
-                  <BsTrash3Fill onClick={() => deleteUser(user)} />
-                </button>
+              <td className="text-nowrap">
                 <button className="btn btn-warning w-50 me-2">
                   <BsPencil onClick={() => selectUser(user)} />
                 </button>
+                <button className="btn btn-danger w-50 me-2">
+                  <BsTrash3Fill onClick={() => deleteUser(user)} />
+                </button>
               </td>
-              </td>
-            </tr>))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   );
 }
-export default UserTable;
+
+export default Admin;

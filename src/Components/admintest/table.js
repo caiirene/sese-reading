@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill }
   from "react-icons/bs";
-import * as client from "./client";
+import * as client from "../users/client";
 import { Link } from "react-router-dom";
 function UserTable() {
   const [users, setUsers] = useState([]);
@@ -45,6 +45,7 @@ function UserTable() {
   useEffect(() => { fetchUsers(); }, []);
   return (
     <div className="text-center">
+      <h2>Admin Portal</h2>
       <table className="table mx-auto">
         <thead>
           <tr>

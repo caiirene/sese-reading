@@ -1,21 +1,34 @@
 import * as client from "./client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Signin() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
+    isAuthenticated: false,
   });
+  const [userId, setUserId] = useState({
+    userId: null,
+  });
+
+  
+  useEffect(() => {}, [userId]);
+
+
   const navigate = useNavigate();
   const signin = async () => {
-    await client.signin(credentials);
-    navigate("/account");
+    const data = await client.signin(credentials); 
+    setUserId(data?._id);
+    if (userId !== null) {
+      setCredentials({ ...credentials, isAuthenticated: true });
+      const jsonString = JSON.stringify(data);
+      localStorage.setItem('currentUser', jsonString);
+    }
+    navigate("/");
+    window.location.reload();
   };
 
-  const back = async () => {
-    navigate("/");
-  };
   return (
     <div  className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25">
@@ -41,9 +54,6 @@ function Signin() {
         </p>
         <button className="btn btn-primary mt-3" onClick={signin}>
           Signin
-        </button>
-        <button className="btn btn-warning" type="button" onClick={back}>
-          Back
         </button>
       </div>
     </div>
