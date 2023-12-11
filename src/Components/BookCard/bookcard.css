@@ -210,3 +210,20 @@
 }
 
 
+.tableHeaderStyle {
+  padding: '10px';
+  font-weight: bold;
+}
+
+
+.tableTitleStyle {
+  padding: '10px';
+  font-weight: bold;
+  background-color: #f6e0a4;
+  color: white; 
+  border: none;
+  border-radius: 20px; 
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

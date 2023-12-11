@@ -55,6 +55,7 @@ function App() {
             <Route path="/admin/users" element={<UserTable />} />
             <Route path="/admin/books" element={<BookAdmin />} />
             <Route path="/profile" element={<Profile />} />
+
           </Routes>
         </div>
       </Router>

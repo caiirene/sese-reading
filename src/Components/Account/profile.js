@@ -7,6 +7,10 @@ function Profile() {
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
 
+  const userData = localStorage.getItem("currentUser");
+  const userObj = JSON.parse(userData);
+  const [user, setUser] = useState(userObj);
+
   const findUserById = async (id) => {
     const user = await client.findUserById(id);
     setAccount(user);
@@ -28,11 +32,11 @@ function Profile() {
   return (
     <div className="container mt-5">
       <h1 className="text-center">Profile</h1>
+      {account && user?._id === account?._id && (
       <div className="d-flex align-items-center justify-content-center">
-        {account && (
           <div className="card" style={{ width: "18rem" }}>
             <div className="card-body">
-              <h5 className="card-title">Profile Information</h5>
+              <h5 className="card-title">Account Information</h5>
               <label className="fw-bold">Username</label>
               <p className="card-text">{account.username}</p>
               <label className="fw-bold">Email</label>
@@ -45,8 +49,16 @@ function Profile() {
               </div>
             </div>
           </div>
-        )}
       </div>
+      )}
+
+      {account && (
+        <div className="container mt-5">
+          <h1 className="text-center">Recent Reviews</h1>
+
+        </div>
+
+      )}
     </div>
   );
 }
