@@ -105,7 +105,6 @@ function BookList() {
           </div>
         ))}
       </div>
-
     </div>
   );
 }
