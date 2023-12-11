@@ -3,15 +3,20 @@ import * as client from "../users/client";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 
-function EditBook(bookId) {
+
+function EditBook() {
+
+    const { bookId } = useParams();
 
     const BOOKS_API_BASE = "http://localhost:56100/api/books/";
     const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
 
     const [account, setAccount] = useState(null);
-    const [curBook, setCurBook] = useState(null);
+    const [curBook, setCurBook] = useState({ name: '', description: '' });
+
     const [chaptersList, setChaptersList] = useState([]);
     const navigate = useNavigate();
 
@@ -40,11 +45,13 @@ function EditBook(bookId) {
     };
 
     useEffect(() => {
-        fetchAccount();
-        fetchBook(bookId);
-        fetchChapters(bookId);
-        console.log("hello EditBook get book and chapters!!!!!!!!!!!!");
-    }, []);
+        if (bookId) {
+            fetchAccount();
+            //fetchBook(bookId);
+            fetchChapters(bookId);
+        }
+    }, [bookId]);
+    
 
     //这个函数在任何input被submit之后都会被调用，改书名，改书简洁，都会调用，就是讲curBook一整个作为一个JSON发送给api
     const updateBook = async () => {
@@ -61,13 +68,13 @@ function EditBook(bookId) {
 
 
             <input
-                onChange={(e) => setA({ ...curBook, description: e.target.value })}
+                onChange={(e) => setCurBook({ ...curBook, description: e.target.value })}
                 className="form-control" type="text" value={curBook.description} />
             <button onClick={updateBook}
                 className="w-100 btn btn-danger mb-2">
                 change book description
             </button>
-            
+
 
             <h2>{JSON.stringify(curBook)}</h2>
             <h2>{JSON.stringify(chaptersList)}</h2>
@@ -84,11 +91,6 @@ function EditBook(bookId) {
                     ))}
             </div>
             <button>creat new work</button>
-            <a
-                href={`https://five610-node-caiirene.onrender.com/a5/add/${a}/${b}`}
-                className="btn btn-danger">
-                Add {a} + {b}
-            </a>
         </div>
     );
 }

@@ -7,6 +7,8 @@ import './Myworks.css';
 import writing from '../ToolImages/writing.png';
 import { Link } from 'react-router-dom';
 
+import EditBook from "../EditBook/EditBook";
+
 function Myworks() {
 
   const BOOKS_API_BASE = "http://localhost:56100/api/books/";
@@ -44,6 +46,11 @@ function Myworks() {
     }
   }, [account]);
 
+  const navigateToEditBook = (bookId) => {
+    // 导航到 '/editbook/:bookId' 路径
+    navigate(`/editbook/${bookId}`);
+  };
+
   return (
     <div>
       <h2>My Works</h2>
@@ -56,12 +63,13 @@ function Myworks() {
             <div key={index} className="list-group-item list-group-item-secondary align-items-center mb-4">
               <h3>{book.name}</h3>
               <p>{book.description}</p>
+              <p>{book._id}</p>
               <p>look!!!!!!!!!!!!!</p>
-              <button>work on it</button>  
+              <button onClick={navigateToEditBook}>work on this book</button>  
             </div>
           ))}
       </div>
-      <button>creat new work</button>
+      <button >creat new work</button>
     </div>
   );
 }
