@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Card from "./card";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SearchBook() {
   const [search, setSearch] = useState("");
   const [bookData, setBook] = useState([]);
   const [randomBooks, setRandomBooks] = useState([]);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedBookData = JSON.parse(localStorage.getItem("bookData"));
@@ -56,6 +57,7 @@ function SearchBook() {
           console.log(res.data.items);
           localStorage.setItem("bookData", JSON.stringify(newBookData));
           localStorage.setItem("search", search);
+          navigate(`/search/${search}`);
         });
     } else {
       alert("Please enter a book name before searching.");
@@ -70,6 +72,7 @@ function SearchBook() {
       setBook([]);
       localStorage.removeItem("bookData");
       localStorage.removeItem("search");
+      navigate(`/search`);
     }
   };
 

@@ -7,21 +7,25 @@ function Home() {
   return (
     <div className="home">
       <header className="home-header">
-        <h1>Welcome to Bookstore</h1>
+        <h3>Welcome to sese reading bookstore!</h3>
       </header>
       <div className="bg-body-tertiary">
-        <div className="row mx-5 ">
+        <div className="row mx-5">
           <div className="col-md-6 d-none d-md-block">
             <FeatureBooks />
           </div>
           <div className="col-md-6 d-block d-flex justify-content-center align-items-center">
-            <div className="">
-              <p className="text-center">
-                Embark on a literary journey where every page tells a story.
+            <div>
+              <p className="text-center mb-5">
+                "Uncover worlds within each page. From classics to contemporary
+                tales, find your next adventure here. Every book has a story,
+                and every story awaits you !"
               </p>
-              <Link to="/all-books" className="text-decoration-none">
-                <button className="explore-button">Explore All Books</button>
-              </Link>
+              <div className="w-50 mx-auto">
+                <Link to="/bookshowcase" className="text-decoration-none ">
+                  <button className="explore-button w-75 rounded-5">Explore All Books</button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

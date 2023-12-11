@@ -16,12 +16,12 @@ function Test() {
   }, []);
 
   useEffect(() => {
-    const randomSelection = books.sort(() => 0.5 - Math.random()).slice(0, 4);
+    const randomSelection = books.sort(() => Math.random()).slice(0, 4);
     setRandomBooks(randomSelection);
   }, [books]); 
 
   return (
-    <div>
+    <div className="mt-2">
       <h4>Featured Books</h4>
       <div>
         <div className="row d-flex justify-content-start flex-wrap">
