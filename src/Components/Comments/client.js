@@ -7,7 +7,6 @@ const COMMENTS_API = `${BASE_API}/api/comments`;
 export const addComment = async (comment) => {
   try {
     const response = await axios.post(`${COMMENTS_API}`, comment);
-    console.log(response)
     return response.data;
   } catch (error) {
     console.error("Error posting comment:", error);
@@ -25,12 +24,14 @@ export const findAllComments = async () => {
   }
 };
 
-export const findCommentByUserId = async (userId) => {
+export const findCommentByUserId = async (readerId) => {
   try {
-    const response = await axios.get(`${COMMENTS_API}/user`, { params: { userId: userId } });
+    console.log(readerId)
+    const response = await axios.get(`${COMMENTS_API}/user`, { params: { readerId: readerId } });
+    console.log(response)
     return response.data;
   } catch (error) {
-    console.error(`Error fetching comments with user's ID ${userId}:`, error);
+    console.error(`Error fetching comments with user's ID ${readerId}:`, error);
     throw error;
   }
 };
