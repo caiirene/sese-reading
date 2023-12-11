@@ -5,13 +5,41 @@ import axios from "axios";
 function SearchBook() {
   const [search, setSearch] = useState("");
   const [bookData, setBook] = useState([]);
+  const [randomBooks, setRandomBooks] = useState([]);
+
 
   useEffect(() => {
     const storedBookData = JSON.parse(localStorage.getItem("bookData"));
     if (storedBookData) {
       setBook(storedBookData);
     }
+    const storedSearch = localStorage.getItem("search");
+    if (storedSearch) {
+      setSearch(storedSearch);
+    }    
+    fetchRandomBooks();
   }, []);
+
+  const fetchRandomBooks = () => {
+    axios
+      .get(
+        "https://www.googleapis.com/books/v1/volumes?q=random&maxResults=20"
+      )
+      .then((res) => {
+        const randomBooksData = res.data.items;
+        const selectedRandomBooks = getRandomBooks(randomBooksData, 6);
+        setRandomBooks(selectedRandomBooks);
+      })
+      .catch((error) => {
+        console.error("Error fetching random books:", error);
+      });
+  };
+
+  const getRandomBooks = (books, count) => {
+    const shuffledBooks = books.sort(() => 0.5 - Math.random());
+    return shuffledBooks.slice(0, count);
+  };
+
 
   const searchBook = (e) => {
     if (search.trim() !== "") {
@@ -27,9 +55,21 @@ function SearchBook() {
           setBook(res.data.items);
           console.log(res.data.items);
           localStorage.setItem("bookData", JSON.stringify(newBookData));
+          localStorage.setItem("search", search);
         });
     } else {
       alert("Please enter a book name before searching.");
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    const inputText = e.target.value;
+    setSearch(inputText);
+
+    if (inputText.trim() === "") {
+      setBook([]);
+      localStorage.removeItem("bookData");
+      localStorage.removeItem("search");
     }
   };
 
@@ -42,9 +82,9 @@ function SearchBook() {
           className="form-control w-50 border border-secondary"
           placeholder="Enter Your Book Name"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleSearchInputChange}
         />
-        <div>
+        <div className="">
           <button
             className="btn btn-outline-primary ms-1"
             style={{ width: "5rem", height: "3rem" }}
@@ -54,8 +94,12 @@ function SearchBook() {
           </button>
         </div>
       </div>
-      <div className="d-flex flex-row flex-wrap row row-cols-auto mt-2 ms-5">
-        {<Card book={bookData} />}
+     <div className="d-flex flex-row flex-wrap row row-cols-auto mt-2 ms-5">
+        {bookData.length > 0 ? (
+          <Card book={bookData} />
+        ) : (
+          <Card book={randomBooks} />
+        )}
       </div>
     </div>
   );

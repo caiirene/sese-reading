@@ -128,8 +128,6 @@ function NavBar() {
         {user !== null && (
         <div className="d-flex">
           <ul className="navbar-nav ms-auto">
-            
-              
               {user !== null && (
                 <li className="nav-item flow-end btn btn-info">
                 <a className="nav-link" onClick = {signOut}>
