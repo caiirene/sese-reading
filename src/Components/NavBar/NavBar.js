@@ -71,6 +71,7 @@ function NavBar() {
         return (
           <>
             <NavLink className="nav-link" to="/" exact style={{ marginRight: '20px' }}>Home</NavLink>
+            <NavLink className="nav-link" to="/profile" exact style={{ marginRight: '20px' }}>Profile</NavLink>
             <NavLink className="nav-link" to="/bookshowcase" exact style={{ marginRight: '20px' }}>Book Showcase</NavLink>
             <NavLink className="nav-link" to="/search" exact style={{ marginRight: '20px' }}>Search</NavLink>
           </>
@@ -79,6 +80,7 @@ function NavBar() {
         return (
           <>
             <NavLink className="nav-link" to="/" exact style={{ marginRight: '20px' }}>Home</NavLink>
+            <NavLink className="nav-link" to="/profile" exact style={{ marginRight: '20px' }}>Profile</NavLink>
             <NavLink className="nav-link" to="/myworks" exact style={{ marginRight: '20px' }}>My Works</NavLink>
             <NavLink className="nav-link" to="/creatework" exact style={{ marginRight: '20px' }}>Create Work</NavLink>
           </>
