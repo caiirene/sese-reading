@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function Detail() {
   const { bookId } = useParams();
   const [bookDetails, setBookDetails] = useState(null);
-  const navigate = useNavigate();
   useEffect(() => {
     // Fetch book details using the bookId
     axios
@@ -19,39 +17,44 @@ function Detail() {
   if (!bookDetails || !bookDetails.volumeInfo) {
     return <div>Loading...</div>;
   }
-  
-  const back = async () => {
-    navigate("/search");
-  };
 
   return (
-    <div>
-      <h1>Details</h1>
-      <div>
-        <img
-          src={bookDetails.volumeInfo.imageLinks.thumbnail}
-          alt={bookDetails.volumeInfo.title}
-        />
+    <div className="container mt-3">
+      <h3>Book Detail</h3>
+      <div className="row mt-4">
+        <div className="col-md-4">
+          <img
+            src={bookDetails.volumeInfo.imageLinks.thumbnail}
+            alt={bookDetails.volumeInfo.title}
+            className="img-fluid mt-3"
+          />
+          <div className="mt-5">
+            <h4>Title: {bookDetails.volumeInfo.title}</h4>
+            <p>Author: {bookDetails.volumeInfo.authors.join(", ")}</p>
+            <p>Published Date: {bookDetails.volumeInfo.publishedDate}</p>
+          </div>
+          <div className="w-50 mt-4 ms-5">
+            <Link to={bookDetails.volumeInfo.previewLink} className="text-decoration-none">
+              <button className="w-100 rounded-3">Read the Book</button>
+            </Link>
+          </div>
+          <div className="w-50 mt-3 ms-5">
+            <Link to="/search" className="text-decoration-none ">
+              <button className="w-100 rounded-3">Back to Search</button>
+            </Link>
+        </div>
+        </div>
+  
+        <div className="col-md-8">
+          <div>
+            <small>{bookDetails.volumeInfo.description}</small>
+          </div>
+        
+        </div>
       </div>
-
-      {/* Display book details as needed */}
-      <p>Title: {bookDetails.volumeInfo.title}</p>
-      <p>Author: {bookDetails.volumeInfo.authors.join(", ")}</p>
-      <h4>{bookDetails.volumeInfo.publisher}</h4>
-      <p>{bookDetails.volumeInfo.publishedDate}</p>
-      <br />
-      <div>
-        <p>{bookDetails.volumeInfo.description}</p>
-      </div>
-      <br />
-      <div>
-        <a href={bookDetails.volumeInfo.previewLink}>
-          <button>Read</button>
-        </a>
-      </div>
-      <button onClick={back}>Back</button>
     </div>
   );
+  
 }
 
 export default Detail;
