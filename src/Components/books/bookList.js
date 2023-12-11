@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { Link, useParams } from "react-router-dom";
 import * as client from "./client";
 import BookCard from "../BookCard/Bookcard";
+=======
+
+import * as client from "./client";
+
+>>>>>>> zijunBranch
 function BookList() {
   const [books, setBooks] = useState([]);
   const [book, setBook] = useState({
@@ -9,7 +15,10 @@ function BookList() {
     description: "new description",
     author: "author",
   });
+<<<<<<< HEAD
   const [selectedBook, setSelectedBook] = useState(null);
+=======
+>>>>>>> zijunBranch
   const fetchBooks = async () => {
     const books = await client.findAllBooks();
     setBooks(books);
@@ -28,6 +37,7 @@ function BookList() {
 
   const updateBook = async () => {
     try {
+<<<<<<< HEAD
       const status = await client.updateBook(book._id, book);
       setBooks(books.map((b) => (b._id === book._id ? book : b)));
     } catch (err) {
@@ -43,6 +53,24 @@ function BookList() {
       console.log(err);
     }
   };
+=======
+        const status = await client.updateBook(book._id, book);
+        setBooks(books.map((b) => (b._id === book._id ? book : b)));
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const deleteBook = async (book) => {
+  try {
+      await client.deleteBook(book._id);
+      setBooks(books.filter((b) => b._id !== book._id));
+  } catch (err) {
+      console.log(err);
+  }
+};
+
+>>>>>>> zijunBranch
 
   return (
     <div>
@@ -72,6 +100,7 @@ function BookList() {
             style={{ width: "260px" }}
           >
             <div className="card h-100">
+<<<<<<< HEAD
               <div
                 style={{ backgroundColor: "#a183d7", height: "150px" }} 
               ></div>
@@ -79,6 +108,13 @@ function BookList() {
                 <Link to={`../book/${book._id}`}>
                   <h5 className="card-title">{book.name}</h5>
                 </Link>
+=======
+              <div style={{ backgroundColor: "#a183d7", height: "150px" }}>
+                <i className="fa-solid fa-ellipsis-vertical float-end me-4 pt-4 text-white fa-lg"></i>
+              </div>
+              <div className="card-body">
+                <h5 className="card-title">{book.name}</h5>
+>>>>>>> zijunBranch
 
                 <p className="card-text">
                   {book.name}
@@ -105,7 +141,10 @@ function BookList() {
           </div>
         ))}
       </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> zijunBranch
     </div>
   );
 }

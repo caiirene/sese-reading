@@ -4,7 +4,10 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 function Account() {
   const { id } = useParams();
   const [account, setAccount] = useState(null);
+<<<<<<< HEAD
   const [userRole, setUserRole] = useState("USER");
+=======
+>>>>>>> zijunBranch
   const navigate = useNavigate();
   const findUserById = async (id) => {
     const user = await client.findUserById(id);
@@ -14,7 +17,10 @@ function Account() {
   const fetchAccount = async () => {
     const account = await client.account();
     setAccount(account);
+<<<<<<< HEAD
     setUserRole(account.role)
+=======
+>>>>>>> zijunBranch
   };
   useEffect(() => {
     if (id) {
@@ -72,7 +78,16 @@ function Account() {
                 setAccount({ ...account, email: e.target.value })
               }
             />
+<<<<<<< HEAD
             <label>Role</label>
+=======
+            <label>DOB</label>
+            <input
+              className="form-control mt-2"
+              value={account.dob}
+              onChange={(e) => setAccount({ ...account, dob: e.target.value })}
+            />
+>>>>>>> zijunBranch
             <select
               className="form-control mt-2"
               onChange={(e) => setAccount({ ...account, role: e.target.value })}
@@ -82,17 +97,28 @@ function Account() {
               <option value="AUTHOR">Faculty</option>
               <option value="READER">Student</option>
             </select>
+<<<<<<< HEAD
             <button className="btn btn-primary w-100 mt-2 " onClick={save}>
               <Link className="text-white text-decoration-none" to="/profile">Save</Link>
+=======
+            <button className="btn btn-primary w-100 mt-2" onClick={save}>
+              Save
+>>>>>>> zijunBranch
             </button>
             <button className="btn btn-danger w-100 mt-2" onClick={signout}>
               Signout
             </button>
+<<<<<<< HEAD
             {userRole === "ADMIN" && (
               <Link to="/table" className="btn btn-warning w-100 mt-2">
                 Users
               </Link>
             )}
+=======
+            <Link to="/admin/users" className="btn btn-warning w-100 mt-2 ">
+              Users
+            </Link>
+>>>>>>> zijunBranch
           </div>
         )}
       </div>

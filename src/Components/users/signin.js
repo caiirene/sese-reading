@@ -1,11 +1,16 @@
 import * as client from "./client";
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
+=======
+import { useState } from "react";
+>>>>>>> zijunBranch
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Signin() {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
+<<<<<<< HEAD
     isAuthenticated: false,
   });
   const [userId, setUserId] = useState({
@@ -29,6 +34,18 @@ function Signin() {
     window.location.reload();
   };
 
+=======
+  });
+  const navigate = useNavigate();
+  const signin = async () => {
+    await client.signin(credentials);
+    navigate("/account");
+  };
+
+  const back = async () => {
+    navigate("/");
+  };
+>>>>>>> zijunBranch
   return (
     <div  className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25">
@@ -55,6 +72,12 @@ function Signin() {
         <button className="btn btn-primary mt-3" onClick={signin}>
           Signin
         </button>
+<<<<<<< HEAD
+=======
+        <button className="btn btn-warning" type="button" onClick={back}>
+          Back
+        </button>
+>>>>>>> zijunBranch
       </div>
     </div>
   );
