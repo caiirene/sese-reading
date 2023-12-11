@@ -15,23 +15,12 @@ function Signup() {
   const signup = async () => {
     try {
       await client.signup(credentials);
-<<<<<<< HEAD
       navigate("/profile");
-=======
-      navigate("/account");
->>>>>>> zijunBranch
     } catch (err) {
       setError(err.response.data.message);
     }
   };
 
-<<<<<<< HEAD
-=======
-  const back = async () => {
-    navigate("/");
-  };
-
->>>>>>> zijunBranch
   return (
     <div className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25 ">
@@ -80,12 +69,6 @@ function Signup() {
         <button className="btn btn-primary mt-3" type="button" onClick={signup}>
           Signup
         </button>
-<<<<<<< HEAD
-=======
-        <button className="btn btn-warning" type="button" onClick={back}>
-          Back
-        </button>
->>>>>>> zijunBranch
       </div>
     </div>
   );

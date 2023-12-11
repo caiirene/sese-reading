@@ -1,23 +1,12 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-=======
-// Inside Detail.js
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
->>>>>>> zijunBranch
 
 function Detail() {
   const { bookId } = useParams();
   const [bookDetails, setBookDetails] = useState(null);
-<<<<<<< HEAD
   const navigate = useNavigate();
-=======
-
->>>>>>> zijunBranch
   useEffect(() => {
     // Fetch book details using the bookId
     axios
@@ -31,12 +20,9 @@ function Detail() {
     return <div>Loading...</div>;
   }
   
-<<<<<<< HEAD
   const back = async () => {
     navigate("/search");
   };
-=======
->>>>>>> zijunBranch
 
   return (
     <div>
@@ -60,18 +46,10 @@ function Detail() {
       <br />
       <div>
         <a href={bookDetails.volumeInfo.previewLink}>
-<<<<<<< HEAD
           <button>Read</button>
         </a>
       </div>
       <button onClick={back}>Back</button>
-=======
-          <button>More</button>
-        </a>
-      </div>
-
-      <button>Add to My List</button>
->>>>>>> zijunBranch
     </div>
   );
 }

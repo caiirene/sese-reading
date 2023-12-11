@@ -58,11 +58,7 @@ function Card({ book }) {
                   </div>
                   <div>
                     <button className="btn btn-outline-primary w-75">
-<<<<<<< HEAD
                       <div className="fs-6">More Info</div>
-=======
-                      <div className="fs-6">Add to My List</div>
->>>>>>> zijunBranch
                     </button>
                   </div>
                 </div>

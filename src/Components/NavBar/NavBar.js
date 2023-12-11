@@ -1,5 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,13 +21,6 @@ function NavBar() {
   useEffect(() => {
   }, [user]);
 
-=======
-import { NavLink } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
-function NavBar() {
->>>>>>> zijunBranch
   return (
     <nav
       className="navbar navbar-expand-lg"
@@ -49,11 +41,8 @@ function NavBar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-<<<<<<< HEAD
 
         {user?.role != "ADMIN" && (
-=======
->>>>>>> zijunBranch
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav nav-underline">
             <li className="nav-item">
@@ -62,18 +51,8 @@ function NavBar() {
               </NavLink>
             </li>
             <li className="nav-item">
-<<<<<<< HEAD
               <NavLink className="nav-link" to="/profile" exact>
                 Profile
-=======
-              <NavLink className="nav-link" to="/book" exact>
-                BookCard
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/authorzone" exact>
-                AuthorZone
->>>>>>> zijunBranch
               </NavLink>
             </li>
             <li className="nav-item">
@@ -88,11 +67,7 @@ function NavBar() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/creatework" exact>
-<<<<<<< HEAD
-                CreateWork
-=======
                 CreateBook
->>>>>>> zijunBranch
               </NavLink>
             </li>
             <li className="nav-item">
@@ -109,7 +84,6 @@ function NavBar() {
                 search
               </NavLink>
             </li>
-<<<<<<< HEAD
             </ul>
         </div>
         )}
@@ -165,31 +139,12 @@ function NavBar() {
               )}
           </ul>
         </div> )}
-=======
-          </ul>
-        </div>
-            <div className="d-flex">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item flow-end btn btn-info">
-                  <a className="nav-link" href="/signin">
-                    Sign In
-                  </a>
-                </li>
-                <li className="nav-item btn btn-info ms-2">
-                  <a className="nav-link" href="/signup">
-                    Sign Up
-                  </a>
-                </li>
-              </ul>
-            </div>
->>>>>>> zijunBranch
       </div>
     </nav>
   );
 }
 
 export default NavBar;
-<<<<<<< HEAD
 
 
 /*{userRole === "ADMIN" &&
@@ -198,5 +153,3 @@ export default NavBar;
                 Manage Users
               </NavLink>
             </li>}*/
-=======
->>>>>>> zijunBranch
