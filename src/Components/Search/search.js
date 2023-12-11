@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./card";
 import axios from "axios";
-// test on search function using the google book api, working on...
 
 function SearchBook() {
   const [search, setSearch] = useState("");
   const [bookData, setBook] = useState([]);
+
+  useEffect(() => {
+    const storedBookData = JSON.parse(localStorage.getItem("bookData"));
+    if (storedBookData) {
+      setBook(storedBookData);
+    }
+  }, []);
+
   const searchBook = (e) => {
-    axios
-      .get(
-        "https://www.googleapis.com/books/v1/volumes?q=" +
-          search +
-          "&key=AIzaSyASI4McIODQ9y7FRxRndxEWy3R-gqKYDi8" +
-          "&maxResults=40"
-      )
-      .then((res) => {
-        setBook(res.data.items);
-        console.log(res.data.items);
-      });
+    if (search.trim() !== "") {
+      axios
+        .get(
+          "https://www.googleapis.com/books/v1/volumes?q=" +
+            search +
+            "&key=AIzaSyASI4McIODQ9y7FRxRndxEWy3R-gqKYDi8" +
+            "&maxResults=40"
+        )
+        .then((res) => {
+          const newBookData = res.data.items;
+          setBook(res.data.items);
+          console.log(res.data.items);
+          localStorage.setItem("bookData", JSON.stringify(newBookData));
+        });
+    } else {
+      alert("Please enter a book name before searching.");
+    }
   };
 
   return (
@@ -49,5 +62,3 @@ function SearchBook() {
 }
 
 export default SearchBook;
-
-
