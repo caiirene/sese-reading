@@ -31,8 +31,6 @@ function BookCard() {
     try {
       const bookComments = await findCommentByBookId(bookId);
       setComments(bookComments)
-      //console.log(bookComments)
-      //console.log(comments)
     } catch (err) {
       console.log(err);
     }
@@ -147,6 +145,12 @@ function BookCard() {
                   </td>
                   <td>
                     {object.timestamp}
+                  </td>
+                  <td>
+                    {object.readerId}
+                  </td>
+                  <td>
+                    {object.bookId}
                   </td>
                 </tr>
                 
