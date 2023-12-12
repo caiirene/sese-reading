@@ -7,7 +7,7 @@ import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill }
   from "react-icons/bs";
 import axios from "axios";
 import { findCommentByBookId, findAllComments, addComment } from "../Comments/client";
-import { findUserById } from "../users/client";
+//import { findUserById } from "../users/client";
 function BookCard() {
   const { bookId } = useParams();
   const [book, setBook] = useState(null);
@@ -67,7 +67,12 @@ function BookCard() {
 
           <div className="book-card-details">
             <h1 className="book-card-title">{book.name}</h1>
-            <h2 className="book-card-author">{book.author}</h2>
+            <p className="card-text">
+              Author: 
+              <Link to={`/author/${book.authorId}`}>
+                {book.authorName}
+              </Link>
+            </p >
             <div className="book-card-update">Update word count</div>
           </div>
         </div>

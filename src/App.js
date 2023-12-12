@@ -21,6 +21,7 @@ import BookList from "./Components/books/bookList";
 import { Provider } from "react-redux";
 import Profile from "./Components/Account/profile";
 import BookAdmin from "./Components/BookAdmin/bookadmin";
+import AuthorProfile from "./Components/Account/authorProfile";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="/admin/users" element={<UserTable />} />
             <Route path="/admin/books" element={<BookAdmin />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/author/:id" element={<AuthorProfile />} />
 
           </Routes>
         </div>

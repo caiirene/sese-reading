@@ -53,3 +53,13 @@ export const deleteBook = async (bookId) => {
     throw error;
   }
 };
+
+export const fetchBooksByAuthor = async (authorId) => {
+  try {
+    const response = await axios.get(`${BOOKS_API}/author/${authorId}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching books by author with ID ${authorId}:`, error);
+    throw error;
+  }
+}
