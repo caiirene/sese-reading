@@ -2,9 +2,11 @@ import axios from "axios";
 const request = axios.create({
   withCredentials: true,
 });
-export const BASE_API =
+// export const BASE_API =
 
-  process.env.REACT_APP_API_BASE || 'http://localhost:56100';
+//   process.env.REACT_APP_API_BASE || 'http://localhost:56100';
+
+  export const BASE_API ='https://sese-reading-node.onrender.com';
 
 export const USERS_API = `${BASE_API}/api/users`;
 export const signin = async (credentials) => {
