@@ -77,7 +77,6 @@ function Account() {
               className="form-control mt-2"
               onChange={(e) => setAccount({ ...account, role: e.target.value })}
             >
-              <option value="USER">User</option>
               <option value="ADMIN">Admin</option>
               <option value="AUTHOR">Faculty</option>
               <option value="READER">Student</option>

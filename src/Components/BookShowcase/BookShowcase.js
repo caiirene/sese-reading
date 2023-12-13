@@ -1,58 +1,115 @@
-import React from 'react';
-import './BookShowcase.css'; // Make sure to have the CSS file in the same directory
+import React, { useState, useEffect } from "react";
+import "./BookShowcase.css";
+import * as client from "../books/client";
+import { useNavigate } from "react-router-dom";
 
 function BookShowcase() {
-  // This is a mock data array to simulate fetching book data
-  const books = [
-    { name: 'Book Name', intro: 'Book Intro', image: 'https://source.unsplash.com/random/300x200', tags: 'tags' },
-    { name: 'Another Book', intro: 'Another Intro', image: 'https://source.unsplash.com/random/300x200', tags: 'more tags' },
-    { name: 'Third Book', intro: 'Third Book Intro', image: 'https://source.unsplash.com/random/300x200', tags: 'even more tags' }
-  ];
+  const [books, setBooks] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const books = await client.findAllBooks();
+      setBooks(books);
+    };
+
+    fetchBooks();
+  }, []);
+
+  const viewBook = (book) => {
+    navigate(`/book/${book._id}`);
+  };
+
+  const handleSearchInputChange = (e) => {
+    const inputText = e.target.value;
+    setSearchQuery(inputText);
+
+    if (inputText.trim() === "") {
+      setSearchResults([]);
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchQuery.trim() !== "") {
+      const results = books.filter((book) =>
+        book.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  
   return (
     <div className="book-showcase">
-      <header>
-        <input type="search" placeholder="Label here..." />
-      </header>
-      <button className="writer-button" onClick={() => { /* logic to go to writer page */ }}>
-            go to writer page
+      <div className="row d-flex mb-3">
+        <div className="col-9">
+          <input
+            type="search"
+            placeholder="Search here..."
+            value={searchQuery}
+             onChange={handleSearchInputChange}
+          />
+        </div>
+        <div className="col-2">
+          <button onClick={handleSearch}>Search</button>
+        </div>
+      </div>
+
+      <button
+        className="writer-button"
+        onClick={() => {
+          /* logic to go to writer page */
+        }}
+      >
+        go to writer page
       </button>
 
       <section className="recommendation">
         <h2>Recommendation 👍👍👍👍</h2>
-        {books.map((book, index) => (
-          <article key={index} className="book-item">
-            <img src={book.image} alt="Book" />
-            <div className="book-info">
-              <h3>{book.name}</h3>
-              <p>{book.intro}</p>
-              <p>{book.tags}</p>
-            </div>
-          </article>
-        ))}
+        {searchResults.length > 0
+          ? searchResults.map((book, index) => (
+              <article key={index} className="book-item">
+                <img src={book.coverImage} alt="Book" />
+                <div className="book-info">
+                  <h3>{book.name}</h3>
+                  <p>{book.authorName}</p>
+                </div>
+                <div>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => {
+                      viewBook(book);
+                    }}
+                  >
+                    View
+                  </button>
+                </div>
+              </article>
+            ))
+          : books.map((book, index) => (
+              <article key={index} className="book-item">
+                <img src={book.coverImage} alt="Book" />
+                <div className="book-info">
+                  <h3>{book.name}</h3>
+                  <p>{book.authorName}</p>
+                </div>
+                <div>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => {
+                      viewBook(book);
+                    }}
+                  >
+                    View
+                  </button>
+                </div>
+              </article>
+            ))}
       </section>
-
-      <section className="whats-new">
-        <h2>What's New 📚</h2>
-        <div className="book-row">
-          {/* Repeat for each new book */}
-          <div className="book">
-            <img src="https://source.unsplash.com/random/100x100" alt="New Book" />
-            <span>Book name</span>
-          </div>
-        </div>
-      </section>
-
-      <h2 className="ranking-title">Ranking List 🏆</h2>
-      <section className="ranking-list">
-  <div className="book-row">
-    {/* Repeat for each book */}
-    <div className="book">
-      <img src="https://source.unsplash.com/random/100x100" alt="Ranked Book"/>
-      <span>Book name</span>
-    </div>
-  </div>
-</section>
     </div>
   );
 }
