@@ -4,6 +4,7 @@ const BASE_API = "http://localhost:56100";
 
 const BOOKS_API = `${BASE_API}/api/books`;
 
+
 export const createBook = async (book) => {
   try {
     const response = await axios.post(`${BOOKS_API}`, book);
@@ -57,6 +58,7 @@ export const deleteBook = async (bookId) => {
 export const fetchBooksByAuthor = async (authorId) => {
   try {
     const response = await axios.get(`${BOOKS_API}/author/${authorId}`);
+    console.log("response",response);
     return response.data;
   } catch (error) {
     console.error(`Error fetching books by author with ID ${authorId}:`, error);

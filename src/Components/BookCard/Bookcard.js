@@ -69,7 +69,7 @@ function BookCard() {
             <h1 className="book-card-title">{book.name}</h1>
             <p className="card-text">
               Author: 
-              <Link to={`/author/${book.authorId}`}>
+              <Link to={`/author/${book.author}`}>
                 {book.authorName}
               </Link>
             </p >

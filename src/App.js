@@ -56,7 +56,7 @@ function App() {
             <Route path="/admin/users" element={<UserTable />} />
             <Route path="/admin/books" element={<BookAdmin />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/author/:id" element={<AuthorProfile />} />
+            <Route path="/author/:author" element={<AuthorProfile />} />
 
           </Routes>
         </div>

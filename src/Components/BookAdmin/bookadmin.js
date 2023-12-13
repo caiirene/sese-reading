@@ -46,24 +46,6 @@ function BookAdmin() {
 
   return (
     <div>
-      <input
-        value={book.name}
-        className="form-control"
-        onChange={(e) => setBook({ ...book, name: e.target.value })}
-      />
-      <input
-        value={book.description}
-        className="form-control"
-        onChange={(e) => setBook({ ...book, description: e.target.value })}
-      />
-      <input
-        value={book.author}
-        className="form-control"
-        onChange={(e) => setBook({ ...book, author: e.target.value })}
-      />
-      <hr />
-      <button onClick={createBook}>Add</button>
-      <button onClick={updateBook}>Update</button>
       <div className="row d-flex justify-content-start flex-wrap">
         {books.map((book) => (
           <div
@@ -111,3 +93,24 @@ function BookAdmin() {
 }
 
 export default BookAdmin;
+
+/*
+      <input
+        value={book.name}
+        className="form-control"
+        onChange={(e) => setBook({ ...book, name: e.target.value })}
+      />
+      <input
+        value={book.description}
+        className="form-control"
+        onChange={(e) => setBook({ ...book, description: e.target.value })}
+      />
+      <input
+        value={book.author}
+        className="form-control"
+        onChange={(e) => setBook({ ...book, author: e.target.value })}
+      />
+      <hr />
+      <button onClick={createBook}>Add</button>
+      <button onClick={updateBook}>Update</button>
+*/
