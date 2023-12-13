@@ -21,10 +21,10 @@ function EditBook() {
     const [chaptersList, setChaptersList] = useState([]);
     const navigate = useNavigate();
 
-    const fetchAccount = async () => {
-        const curAccount = await client.account();
-        setAccount(curAccount);
-    };
+    // const fetchAccount = async () => {
+    //     const curAccount = await client.account();
+    //     setAccount(curAccount);
+    // };
 
     const fetchBook = async (bookId) => {
         try {
@@ -47,7 +47,7 @@ function EditBook() {
 
     useEffect(() => {
         if (bookId) {
-            fetchAccount();
+            //fetchAccount();
             fetchBook(bookId);
             fetchChapters(bookId);
         }

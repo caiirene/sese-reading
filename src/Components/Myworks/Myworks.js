@@ -11,8 +11,8 @@ import EditBook from "../EditBook/EditBook";
 
 function Myworks() {
 
-  const BOOKS_API_BASE = "https://sese-reading-node.onrender.com/api/books/" ;
-  //|| "http://localhost:56100/api/books/"
+  //const BOOKS_API_BASE = "https://sese-reading-node.onrender.com/api/books/" ;
+  const BOOKS_API_BASE =  "http://localhost:56100/api/books/"
 
 
   const [account, setAccount] = useState(null);
@@ -66,7 +66,7 @@ function Myworks() {
               <p>{book.description}</p>
               <p>{book._id}</p>
               <p>look!!!!!!!!!!!!!</p>
-              <button onClick={navigateToEditBook}>work on this book</button>  
+              <button onClick={()=>navigateToEditBook(book._id)}>work on this book</button>  
             </div>
           ))}
       </div>
