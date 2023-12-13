@@ -46,27 +46,27 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav nav-underline">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/" exact>
+              <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/profile" exact>
+              <NavLink className="nav-link" to="/profile">
                 Profile
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/bookshowcase" exact>
+              <NavLink className="nav-link" to="/bookshowcase">
                 BookShowcase
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/myworks" exact>
+              <NavLink className="nav-link" to="/myworks">
                 Myworks
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/creatework" exact>
+              <NavLink className="nav-link" to="/creatework">
                 CreateBook
               </NavLink>
             </li>
@@ -74,13 +74,12 @@ function NavBar() {
               <NavLink
                 className="nav-link"
                 to="/bookshowcaseadministrators"
-                exact
               >
                 bookshowcaseadministrators
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/search" exact>
+              <NavLink className="nav-link" to="/search">
                 search
               </NavLink>
             </li>
@@ -92,13 +91,13 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="nav nav-underline">
               <li className="nav-item">
-              <NavLink className="nav-link" to="/admin/users" exact>
+              <NavLink className="nav-link" to="/admin/users" >
                 Manage Users
               </NavLink>
               </li>
             
               <li className="nav-item">
-              <NavLink className="nav-link" to="/admin/books" exact>
+              <NavLink className="nav-link" to="/admin/books" >
                 Manage Books
               </NavLink>
             </li>
@@ -149,7 +148,7 @@ export default NavBar;
 
 /*{userRole === "ADMIN" &&
             <li className="nav-item">
-              <NavLink className="nav-link" to="/admin/users" exact>
+              <NavLink className="nav-link" to="/admin/users">
                 Manage Users
               </NavLink>
             </li>}*/

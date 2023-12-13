@@ -19,31 +19,28 @@ const CreateBook = () => {
   const [booksList, setBooksList] = useState([]);
 
   const fetchAccount = async () => {
-    const curAccount = await client.account();
-    setAccount(curAccount);
-  };
-  const fetchAllBooksFromAuthor = async (authorId) => {
     try {
-      const response = await axios.get(`${BOOKS_API_BASE}author/${authorId}`);
-      setBooksList(response.data); // 假设书籍数据在 response.data 中
+      const response = await axios.get('http://localhost:56100/api/users/account');
+      setAccount(response.data);
     } catch (error) {
-      console.error("Error fetching books in <MyWork/>fetchAllBooksFromAuthor:", error);
-      // 可以设置一个错误状态来显示错误信息
+      console.error("Error fetching account:", error);
+      // Handle error appropriately
     }
   };
+  
 
   useEffect(() => {
     fetchAccount();
     console.log("hello!!!!!!!!!!!!");
   }, []);
 
-  useEffect(() => {
-    if (account && account._id) {
-      console.log("aaaaaaa!!!!!!!!!!!!");
-      //console.log("Account ID:", account._id); // 打印 account._id
-      fetchAllBooksFromAuthor(account._id);
-    }
-  }, [account]);
+  // useEffect(() => {
+  //   if (account && account._id) {
+  //     console.log("aaaaaaa!!!!!!!!!!!!");
+  //     //console.log("Account ID:", account._id); // 打印 account._id
+  //     fetchAllBooksFromAuthor(account._id);
+  //   }
+  // }, [account]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -63,7 +60,7 @@ const CreateBook = () => {
       introduction,
       coverImage
     };
-
+  
     axios.post('http://localhost:56100/api/books/', data)
       .then(() => {
         enqueueSnackbar('Book Created successfully', { variant: 'success' });
@@ -71,7 +68,21 @@ const CreateBook = () => {
       })
       .catch((error) => {
         enqueueSnackbar('Error creating book', { variant: 'error' });
-        console.log(error);
+        
+        // Logging more details about the error
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
       });
   };
 
