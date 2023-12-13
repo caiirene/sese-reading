@@ -34,7 +34,7 @@ function BookShowcase() {
   const handleSearch = () => {
     if (searchQuery.trim() !== "") {
       const results = books.filter((book) =>
-        book.title.toLowerCase().includes(searchQuery.toLowerCase())
+        book.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setSearchResults(results);
     } else {
@@ -75,7 +75,7 @@ function BookShowcase() {
               <article key={index} className="book-item">
                 <img src={book.coverImage} alt="Book" />
                 <div className="book-info">
-                  <h3>{book.title}</h3>
+                  <h3>{book.name}</h3>
                   <p>{book.authorName}</p>
                 </div>
                 <div>
@@ -94,7 +94,7 @@ function BookShowcase() {
               <article key={index} className="book-item">
                 <img src={book.coverImage} alt="Book" />
                 <div className="book-info">
-                  <h3>{book.title}</h3>
+                  <h3>{book.name}</h3>
                   <p>{book.authorName}</p>
                 </div>
                 <div>

@@ -37,7 +37,7 @@ function BookCard() {
           <img className="book-card-image" src={book.coverImage} alt="" />
 
           <div className="book-card-details">
-            <h1 className="book-card-title">{book.title}</h1>
+            <h1 className="book-card-title">{book.name}</h1>
             <h2 className="book-card-author">{book.authorName}</h2>
             <div className="book-card-update">Update word count</div>
           </div>
@@ -69,7 +69,7 @@ function BookCard() {
           <p>
             <strong>Introduction</strong>
             <br />
-            <span>{book.introduction}</span>
+            <span>{book.description}</span>
           </p>
           <p>
             <strong>Comment</strong>

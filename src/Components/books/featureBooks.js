@@ -43,7 +43,7 @@ function Test() {
                 ></div>
                 <div className="bg-body-tertiary">
                   <Link to={`../book/${book._id}`} className="text-decoration-none">
-                    <h5 className="card-title">{book.title}</h5>
+                    <h5 className="card-title">{book.name}</h5>
                   </Link>
                 </div>
               </div>
