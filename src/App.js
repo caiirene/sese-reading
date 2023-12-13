@@ -53,6 +53,7 @@ function App() {
             <Route path="/detail/:bookId" element={<Detail />} />
 
             <Route path="/search" element={<Search />} />
+            <Route path="/search/:keyword" element={<Search />} />
 
             <Route path="/admin/users" element={<UserTable />} />
             <Route path="/admin/books" element={<BookAdmin />} />

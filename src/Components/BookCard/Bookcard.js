@@ -34,11 +34,11 @@ function BookCard() {
     <div className="book-card">
       <div className="book-card-image-wrapper">
         <div className="book-card-header" key={book.id}>
-          <img className="book-card-image" src={BookImage} alt="" />
+          <img className="book-card-image" src={book.coverImage} alt="" />
 
           <div className="book-card-details">
             <h1 className="book-card-title">{book.name}</h1>
-            <h2 className="book-card-author">{book.author}</h2>
+            <h2 className="book-card-author">{book.authorName}</h2>
             <div className="book-card-update">Update word count</div>
           </div>
         </div>
@@ -69,7 +69,7 @@ function BookCard() {
           <p>
             <strong>Introduction</strong>
             <br />
-            <span>Content for paragraph three goes here.</span>
+            <span>{book.description}</span>
           </p>
           <p>
             <strong>Comment</strong>
