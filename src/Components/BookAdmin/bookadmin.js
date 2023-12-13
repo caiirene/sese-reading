@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import * as client from "./client";
-import BookCard from "../BookCard/Bookcard";
-function BookList() {
+import * as client from "../books/client";
+//import BookCard from "../BookCard/Bookcard";
+function BookAdmin() {
   const [books, setBooks] = useState([]);
   const [book, setBook] = useState({
     name: "new book",
@@ -105,8 +105,9 @@ function BookList() {
           </div>
         ))}
       </div>
+
     </div>
   );
 }
 
-export default BookList;
+export default BookAdmin;
