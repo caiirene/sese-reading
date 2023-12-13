@@ -10,9 +10,10 @@ import { useParams } from 'react-router-dom';
 function EditChapter() {
 
     const { chapterId } = useParams();
+    //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
 
     const BOOKS_API_BASE = "http://localhost:56100/api/books/";
-    const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
+    const CHAPTER_API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:56100/api/chapters/";
 
     const [curChapter, setCurChapter] = useState({ chapterContent: '', chapterName: '' });
 
