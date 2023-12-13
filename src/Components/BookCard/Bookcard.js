@@ -63,7 +63,7 @@ function BookCard() {
     <div className="book-card">
       <div className="book-card-image-wrapper">
         <div className="book-card-header" key={book.id}>
-          <img className="book-card-image" src={BookImage} alt="" />
+          <img className="book-card-image" src={book.coverImage} alt="" />
 
           <div className="book-card-details">
             <h1 className="book-card-title">{book.name}</h1>
@@ -103,7 +103,7 @@ function BookCard() {
           <p>
             <strong>Introduction</strong>
             <br />
-            <span>Content for paragraph three goes here.</span>
+            <span>{book.description}</span>
           </p>
           <div className="book-card-action-buttons">
           <button className="action-button">Start Reading</button>
