@@ -7,64 +7,44 @@ import { useParams } from 'react-router-dom';
 
 
 
-function EditBook() {
+function EditChapter() {
 
-    const { bookId } = useParams();
-    console.log(bookId);
+    const { chapterId } = useParams();
 
     const BOOKS_API_BASE = "http://localhost:56100/api/books/";
     const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
 
-    const [account, setAccount] = useState(null);
-    const [curBook, setCurBook] = useState({ name: '', description: '' });
+    const [curChapter, setCurChapter] = useState({ chapterContent: '', chapterName: '' });
 
-    const [chaptersList, setChaptersList] = useState([]);
     const navigate = useNavigate();
 
-    const fetchAccount = async () => {
-        const curAccount = await client.account();
-        setAccount(curAccount);
-    };
-
-    const fetchBook = async (bookId) => {
+    const fetchChapter = async (chapterId) => {
         try {
-            const response = await axios.get(`${BOOKS_API_BASE}${bookId}`);
-            setCurBook(response.data);
+            const response = await axios.get(`${CHAPTER_API_BASE}updatechapter/${chapterId}`);
+            setCurChapter(response.data);
         } catch (error) {
-            console.error("Error fetching books in <EditBook/> fetchBook:", error);
-        }
-    };
-
-    //allchaptersinbooksorted/:bookId"
-    const fetchChapters = async (bookId) => {
-        try {
-            const response = await axios.get(`${CHAPTER_API_BASE}allchaptersinbooksorted/${bookId}`);
-            setChaptersList(response.data);
-        } catch (error) {
-            console.error("Error fetching books in <EditBook/> fetchChapters:", error);
+            console.error("Error fetching books in <EditChapter/> fetchChapter:", error);
         }
     };
 
     useEffect(() => {
-        if (bookId) {
-            fetchAccount();
-            fetchBook(bookId);
-            fetchChapters(bookId);
+        if (chapterId) {
+            fetchChapter(chapterId);
         }
-    }, [bookId]);
+    }, [chapterId]);
     
 
     //这个函数在任何input被submit之后都会被调用，改书名，改书简洁，都会调用，就是讲curBook一整个作为一个JSON发送给api
-    const updateBook = async () => {
+    const updatechapter = async () => {
         const response = await axios
-            .put(`${BOOKS_API_BASE}${bookId}`,curBook);
+            .put(`${CHAPTER_API_BASE}updatechapter/${chapterId}`,curChapter);
         console.log(response.data);
     };
 
     return (
         <div>
-            <h1>bookId here{bookId}</h1>
-            <h2>{curBook.title}</h2>
+            <h1>chapterId here{chapterId}</h1>
+            <h2>{curChapter.chapterName}</h2>
             <p>{curBook.introduction}</p>
 
 
@@ -96,4 +76,4 @@ function EditBook() {
     );
 }
 
-export default EditBook;
+export default EditChapter;
