@@ -11,7 +11,7 @@ function CommentsList() {
   const navigate = useNavigate();
 
   const userData = localStorage.getItem("currentUser");
-  const userObj = JSON.parse(userData);
+  const userObj = userData ? JSON.parse(userData) : null;
   const [user, setUser] = useState(userObj);
 
   const [comments, setComments] = useState([]);

@@ -22,11 +22,6 @@ function AuthorProfile() {
     fetchAuthorWorks(user._id); // Assuming the user object has an _id property
   };
 
-//   const findUserByName = async (firstname) => {
-//     const user = await userClient.findUserByName(firstname);
-//     setAccount(user);
-//     fetchAuthorWorks(user._id); // Assuming the user object has an _id property
-//   }
 
   const fetchAuthorWorks = async (author) => {
     const authorWorks = await bookClient.fetchBooksByAuthor(author);
