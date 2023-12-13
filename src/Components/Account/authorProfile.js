@@ -42,14 +42,21 @@ function AuthorProfile() {
     <div className="container mt-5">
       <h1 className="text-center">Author Profile</h1>
       <div className="d-flex align-items-center justify-content-center">
-        {currUser?._id && (
+        {account && currUser?._id && (
           <div className="card" style={{ width: "18rem" }}>
             <div className="card-body">
               <h5 className="card-title">Profile Information</h5>
+
+              <label className="fw-bold">Author Name</label>
+              <p className="card-text">{account.username}</p >
+              <label className="fw-bold">Email</label>
+              <p className="card-text">{account.email}</p >
               <label className="fw-bold">Works</label>
-               {works.map((work) => (
-                  <li>{work.title}</li> // Assuming the work object has a title property
+              <ul>
+                {works.map((work, index) => (
+                  <li key={index}>{work.name}</li> // Assuming the work object has a title property
                 ))}
+              </ul>
             </div>
           </div>
         )}
