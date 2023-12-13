@@ -1,17 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DefaultImage from '../ToolImages/defaultimage.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import './CreateWork.css';
+import * as client from "../users/client";
 
 const CreateBook = () => {
+  // Assume the user is authenticated and their ID is available
+  const BOOKS_API_BASE = "http://localhost:56100/api/books/";
+  const [user, setUser] = useState(null); // State to store user data
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
   const [introduction, setIntroduction] = useState('');
   const [coverImage, setCoverImage] = useState(DefaultImage);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const [account, setAccount] = useState(null);
+  const [booksList, setBooksList] = useState([]);
+
+  const fetchAccount = async () => {
+    const curAccount = await client.account();
+    setAccount(curAccount);
+  };
+  const fetchAllBooksFromAuthor = async (authorId) => {
+    try {
+      const response = await axios.get(`${BOOKS_API_BASE}author/${authorId}`);
+      setBooksList(response.data); // 假设书籍数据在 response.data 中
+    } catch (error) {
+      console.error("Error fetching books in <MyWork/>fetchAllBooksFromAuthor:", error);
+      // 可以设置一个错误状态来显示错误信息
+    }
+  };
+
+  useEffect(() => {
+    fetchAccount();
+    console.log("hello!!!!!!!!!!!!");
+  }, []);
+
+  useEffect(() => {
+    if (account && account._id) {
+      console.log("aaaaaaa!!!!!!!!!!!!");
+      //console.log("Account ID:", account._id); // 打印 account._id
+      fetchAllBooksFromAuthor(account._id);
+    }
+  }, [account]);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -27,18 +59,18 @@ const CreateBook = () => {
   const handleSaveBook = () => {
     const data = {
       title,
-      author,
+      author: user ? user.name : 'Unknown Author', // Fallback to 'Unknown Author' if user data isn't available
       introduction,
       coverImage
     };
 
-    axios.post('http://localhost:4000/books', data)
+    axios.post('http://localhost:56100/api/books/', data)
       .then(() => {
         enqueueSnackbar('Book Created successfully', { variant: 'success' });
         navigate('/');
       })
       .catch((error) => {
-        enqueueSnackbar('Error', { variant: 'error' });
+        enqueueSnackbar('Error creating book', { variant: 'error' });
         console.log(error);
       });
   };
@@ -73,17 +105,6 @@ const CreateBook = () => {
           />
         </div>
 
-        {/* Author Input */}
-        <div className='input-container'>
-          <label className='input-label'>Author</label>
-          <input
-            type='text'
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            className='text-input'
-            placeholder='Enter author name'
-          />
-        </div>
 
         {/* Introduction Input */}
         <div className='input-container'>
