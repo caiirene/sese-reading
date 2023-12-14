@@ -12,8 +12,8 @@ function EditBook() {
     const { bookId } = useParams();
     console.log(bookId);
 
-    const BOOKS_API_BASE = "http://localhost:56100/api/books/";
-    const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
+    const BOOKS_API_BASE = "https://sese-reading-node.onrender.com/api/books/";
+    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
 
     const [account, setAccount] = useState(null);
     const [curBook, setCurBook] = useState({ name: '', description: '' });

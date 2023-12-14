@@ -13,7 +13,7 @@ function CreateChapter() {
     const { bookId } = useParams();
     //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
 
-    const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
+    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
 
     const [curAccount, setAccount] = useState({ username: "" })
 
