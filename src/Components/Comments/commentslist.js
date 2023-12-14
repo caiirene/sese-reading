@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { findCommentByUserId} from "./client";
 import { FaBook } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 
 function CommentsList() {
