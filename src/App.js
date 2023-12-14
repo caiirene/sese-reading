@@ -22,6 +22,7 @@ import BookList from "./Components/books/bookList";
 import { Provider } from "react-redux";
 import Profile from "./Components/Account/profile";
 import BookAdmin from "./Components/BookAdmin/bookadmin";
+import EditChapter from "./Components/EditChapter/EditChapter";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/authorzone" element={<AuthorZone />} />
             <Route path="/myworks" element={<Myworks />} />
             <Route path="/editbook/:bookId" element={<EditBook />} />
+            <Route path="/editchapter/:chapterId" element={<EditChapter />} />
             <Route path="/creatework" element={<CreateWork />} />
             <Route path="/bookshowcase" element={<BookShowcase />} />
             <Route

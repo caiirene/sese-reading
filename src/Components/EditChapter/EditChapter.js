@@ -12,7 +12,7 @@ function EditChapter() {
     const { chapterId } = useParams();
     //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
 
-    const BOOKS_API_BASE = "http://localhost:56100/api/books/";
+    //const BOOKS_API_BASE = "http://localhost:56100/api/books/";
     const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
 
     const [curChapter, setCurChapter] = useState({ chapterContent: '', chapterName: '' });
@@ -21,7 +21,7 @@ function EditChapter() {
 
     const fetchChapter = async (chapterId) => {
         try {
-            const response = await axios.get(`${CHAPTER_API_BASE}updatechapter/${chapterId}`);
+            const response = await axios.get(`${CHAPTER_API_BASE}onechapterinbook/${chapterId}`);
             setCurChapter(response.data);
         } catch (error) {
             console.error("Error fetching books in <EditChapter/> fetchChapter:", error);
@@ -33,33 +33,43 @@ function EditChapter() {
             fetchChapter(chapterId);
         }
     }, [chapterId]);
-    
+
 
     //这个函数在任何input被submit之后都会被调用，改书名，改书简洁，都会调用，就是讲curBook一整个作为一个JSON发送给api
     const updatechapter = async () => {
         const response = await axios
-            .put(`${CHAPTER_API_BASE}updatechapter/${chapterId}`,curChapter);
+            .put(`${CHAPTER_API_BASE}updatechapter/${chapterId}`, curChapter);
         console.log(response.data);
     };
 
     return (
         <div>
-            <h1>chapterId here{chapterId}</h1>
-            <h2>{curChapter.chapterName}</h2>
-            <p>{curBook.introduction}</p>
-
-
+            <h1>chapterId here</h1>
             <input
-                onChange={(e) => setCurBook({ ...curBook, introduction: e.target.value })}
-                className="form-control" type="text" value={curBook.introduction} />
-            <button onClick={updateBook}
+                onChange={(e) => setCurChapter({ ...curChapter, chapterName: e.target.value })}
+                className="form-control" type="text" value={curChapter.chapterName} />
+            <textarea
+                onChange={(e) => setCurChapter({ ...curChapter, chapterContent: e.target.value })}
+                className="form-control"
+                rows="30"
+                cols="50"
+                value={curChapter.chapterContent}
+            />
+
+            <button onClick={updatechapter}
                 className="w-100 btn btn-danger mb-2">
-                change book introduction
+                change chapter content
             </button>
 
 
-            <h2>{JSON.stringify(curBook)}</h2>
-            {/* <h2>{JSON.stringify(chaptersList)}</h2> */}
+
+        </div>
+    );
+}
+
+export default EditChapter;      
+      {/* <h2>{JSON.stringify(curBook)}</h2>
+             <h2>{JSON.stringify(chaptersList)}</h2>
             <div className="list-group">
 
                 {chaptersList
@@ -72,9 +82,4 @@ function EditChapter() {
                         </div>
                     ))}
             </div>
-            <button>creat new work</button>
-        </div>
-    );
-}
-
-export default EditChapter;
+            <button>creat new work</button> */}

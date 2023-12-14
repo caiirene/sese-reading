@@ -52,13 +52,18 @@ function EditBook() {
             fetchChapters(bookId);
         }
     }, [bookId]);
-    
+
 
     //这个函数在任何input被submit之后都会被调用，改书名，改书简洁，都会调用，就是讲curBook一整个作为一个JSON发送给api
     const updateBook = async () => {
         const response = await axios
-            .put(`${BOOKS_API_BASE}${bookId}`,curBook);
+            .put(`${BOOKS_API_BASE}${bookId}`, curBook);
         console.log(response.data);
+    };
+
+    const navigateToEditChapter = (chapterId) => {
+        // 导航到 '/editbook/:bookId' 路径
+        navigate(`/editchapter/${chapterId}`);
     };
 
     return (
@@ -85,9 +90,10 @@ function EditBook() {
                     .map((chapter, index) => (
                         <div key={index} className="list-group-item list-group-item-secondary align-items-center mb-4">
                             <h3>{chapter.chapterName}</h3>
+                            <p>{chapter._id}</p>
                             <p>{chapter.chapterContent}</p>
                             <p>look!!!!!!!!!!!!!</p>
-                            <button>work on it</button>
+                            <button onClick={()=>navigateToEditChapter(chapter._id)}>work on it</button>
                         </div>
                     ))}
             </div>
