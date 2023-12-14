@@ -66,24 +66,25 @@ function EditBook() {
         navigate(`/editchapter/${chapterId}`);
     };
 
+    const navigateToCreatChapter = (bookId) => {
+        // 导航到 '/editbook/:bookId' 路径
+        navigate(`/createchapter/${bookId}`);
+    };
+
     return (
         <div>
             <h1>bookId here{bookId}</h1>
-            <h2>{curBook.title}</h2>
-            <p>{curBook.introduction}</p>
-
+            <h2>{curBook.name}</h2>
+            <p>{curBook.description}</p>
 
             <input
-                onChange={(e) => setCurBook({ ...curBook, introduction: e.target.value })}
+                onChange={(e) => setCurBook({ ...curBook, description: e.target.value })}
                 className="form-control" type="text" value={curBook.introduction} />
             <button onClick={updateBook}
                 className="w-100 btn btn-danger mb-2">
                 change book introduction
             </button>
 
-
-            <h2>{JSON.stringify(curBook)}</h2>
-            {/* <h2>{JSON.stringify(chaptersList)}</h2> */}
             <div className="list-group">
 
                 {chaptersList
@@ -91,9 +92,8 @@ function EditBook() {
                         <div key={index} className="list-group-item list-group-item-secondary align-items-center mb-4">
                             <h3>{chapter.chapterName}</h3>
                             <p>{chapter._id}</p>
-                            <p>{chapter.chapterContent}</p>
-                            <p>look!!!!!!!!!!!!!</p>
-                            <button onClick={()=>navigateToEditChapter(chapter._id)}>work on it</button>
+                            <button onClick={()=>navigateToEditChapter(chapter._id)}>edit chapter</button>
+                            <button onClick={()=>navigateToCreatChapter(bookId)}>create chapter</button>
                         </div>
                     ))}
             </div>

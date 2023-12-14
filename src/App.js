@@ -40,6 +40,7 @@ function App() {
             <Route path="/editbook/:bookId" element={<EditBook />} />
             <Route path="/editchapter/:chapterId" element={<EditChapter />} />
             <Route path="/creatework" element={<CreateWork />} />
+            <Route path="/createchapter/:bookId" element={<CreateChapter />} />
             <Route path="/bookshowcase" element={<BookShowcase />} />
             <Route
               path="/bookshowcaseadministrators"
