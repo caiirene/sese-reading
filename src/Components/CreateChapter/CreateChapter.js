@@ -15,13 +15,14 @@ function CreateChapter() {
 
     const CHAPTER_API_BASE = "http://localhost:56100/api/chapters/";
 
-    const [newChapter, setNewChapter] = useState({ chapterContent: '', chapterName: '' });
+    const [newChapter, setNewChapter] = useState({ bookInfo:bookId, chapterContent: '', chapterName: '' });
 
     const navigate = useNavigate();
 
     const fetchAccount = async () => {
         const curAccount = await client.account();
         setAccount(curAccount);
+        setNewChapter(...newChapter,{author:curAccount._id})
     };
 
     useEffect(() => {
@@ -33,8 +34,9 @@ function CreateChapter() {
     //这个函数在任何input被submit之后都会被调用，改书名，改书简洁，都会调用，就是讲curBook一整个作为一个JSON发送给api
     const createchapterbutton = async () => {
         const response = await axios
-            .put(`${CHAPTER_API_BASE}updatechapter/${chapterId}`, curChapter);
+            .put(`${CHAPTER_API_BASE}createnewchapter`, newChapter);
         console.log(response.data);
+        navigate(`/editbook/${bookId}`);
     };
 
     return (
