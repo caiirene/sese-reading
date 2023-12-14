@@ -7,105 +7,88 @@ import './CreateWork.css';
 import * as client from "../users/client";
 
 const CreateBook = () => {
-  // Assume the user is authenticated and their ID is available
-  const BOOKS_API_BASE = "http://localhost:56100/api/books/";
-  const [user, setUser] = useState(null); // State to store user data
+  const BOOKS_API_BASE = "http://localhost:4000/api/books/";
   const [title, setTitle] = useState('');
-  const [introduction, setIntroduction] = useState('');
+  const [description, setDescription] = useState('');
   const [coverImage, setCoverImage] = useState(DefaultImage);
+  const [coverFile, setCoverFile] = useState(null);
+  const [account, setAccount] = useState(null); // Account state to store user data
+
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const [account, setAccount] = useState(null);
-  const [booksList, setBooksList] = useState([]);
-
-  const fetchAccount = async () => {
-    try {
-      const response = await axios.get('http://localhost:56100/api/users/account');
-      setAccount(response.data);
-    } catch (error) {
-      console.error("Error fetching account:", error);
-      // Handle error appropriately
-    }
-  };
-  
 
   useEffect(() => {
-    fetchAccount();
-    console.log("hello!!!!!!!!!!!!");
-  }, []);
+    const fetchAccount = async () => {
+      const curAccount = await client.account(); // Adjust this to correctly fetch account data
+      setAccount(curAccount);
+    };
 
-  // useEffect(() => {
-  //   if (account && account._id) {
-  //     console.log("aaaaaaa!!!!!!!!!!!!");
-  //     //console.log("Account ID:", account._id); // 打印 account._id
-  //     fetchAllBooksFromAuthor(account._id);
-  //   }
-  // }, [account]);
+    fetchAccount();
+  }, []);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setCoverImage(reader.result);
-    };
     if (file) {
+      setCoverFile(file); // Store the file
+
+      // Update the image preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCoverImage(reader.result); // Set the preview image
+      };
       reader.readAsDataURL(file);
     }
   };
 
   const handleSaveBook = () => {
-    const data = {
-      title,
-      author: user ? user.name : 'Unknown Author', // Fallback to 'Unknown Author' if user data isn't available
-      introduction,
-      coverImage
-    };
-  
-    axios.post('http://localhost:56100/api/books/', data)
-      .then(() => {
-        enqueueSnackbar('Book Created successfully', { variant: 'success' });
-        navigate('/');
-      })
-      .catch((error) => {
-        enqueueSnackbar('Error creating book', { variant: 'error' });
-        
-        // Logging more details about the error
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log('Error', error.message);
-        }
-      });
+    if (!account) {
+      enqueueSnackbar('User account information not available', { variant: 'error' });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('name', title);
+    formData.append('description', description);
+    formData.append('author', account._id); // Use user's ID as author
+    formData.append('authorName', account.name); // Use user's name as authorName
+    formData.append('pubDate', new Date().toISOString()); // Set current time as publication date
+
+    if (coverFile) {
+      formData.append('coverImage', coverFile);
+    }
+
+    axios.post(BOOKS_API_BASE, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then(() => {
+      enqueueSnackbar('Book Created successfully', { variant: 'success' });
+      navigate('/destination-page'); // Navigate to desired page
+    })
+    .catch((error) => {
+      enqueueSnackbar('Error creating book', { variant: 'error' });
+      console.error("Error creating book:", error);
+    });
   };
 
   return (
     <div className='create-book-container'>
-      <h1 className='create-book-title'>Create Book</h1>
-      <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
-        <div className="image-upload-container">
-          <label htmlFor="cover-image-upload" className="upload-label">
-            <img src={coverImage} alt="Cover" className="cover-image-preview" />
-          </label>
-          <input
-            type="file"
-            id="cover-image-upload"
-            name="coverImage"
-            accept="image/*"
-            className="cover-image-input"
-            onChange={handleImageChange}
-          />
-        </div>
-
-        {/* Title Input */}
-        <div className='input-container'>
+      <div className="image-upload-container">
+        <label htmlFor="cover-image-upload" className="upload-label">
+          <img src={coverImage || DefaultImage} alt="Cover" className="cover-image-preview" />
+        </label>
+        <input
+          type="file"
+          id="cover-image-upload"
+          name="coverImage"
+          accept="image/*"
+          className="cover-image-input"
+          onChange={handleImageChange}
+        />
+      </div>
+      {/* Title Input */}
+      <div className='input-container'>
           <label className='input-label'>Title</label>
           <input
             type='text'
@@ -116,34 +99,20 @@ const CreateBook = () => {
           />
         </div>
 
-
-        {/* Introduction Input */}
-        <div className='input-container'>
-          <label className='input-label'>Introduction</label>
-          <input
-            type='text'
-            value={introduction}
-            onChange={(e) => setIntroduction(e.target.value)}
-            className='text-input'
-            placeholder='Enter introduction, within 500 words.'
-          />
-        </div>
-
-        {/* <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Publish Year</label>
-          <input
-            type='number'
-            value={publishYear}
-            onChange={(e) => setPublishYear(e.target.value)}
-            className='border-2 border-gray-500 px-4 py-2 w-full'
-            placeholder='Enter publish year'
-          />
-        </div> */}
-
-        <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>
-          Save
-        </button>
+      {/* Description Input */}
+      <div className='input-container'>
+        <label className='input-label'>Description</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className='text-input'
+          placeholder='Enter description, within 500 words.'
+        />
       </div>
+
+      <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>
+        Save
+      </button>
     </div>
   );
 };
