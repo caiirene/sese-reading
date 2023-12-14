@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavBar() {
 
@@ -118,9 +119,9 @@ function NavBar() {
         {user === null ? (
           <div className="d-flex">
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item flow-end btn btn-info">
-                <a className="nav-link" href="/signin" style={{ marginRight: '20px' }}>Sign In</a>
-              </li>
+              <Link to="/signin" className="nav-link" style={{ marginRight: '20px' }}>
+                Sign In
+              </Link>
               <li className="nav-item btn btn-info ms-2">
                 <a className="nav-link" href="/signup" style={{ marginRight: '20px' }}>Sign Up</a>
               </li>
