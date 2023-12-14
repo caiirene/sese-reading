@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import { findCommentByUserId} from "./client";
 import { FaBook } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 function CommentsList() {
@@ -64,9 +65,9 @@ function CommentsList() {
               {comments.map((object) => (
                 <tr key ={object?._id} >
                   <td>
-                  <a href={`/book/${object.bookId}`} className="btn btn-primary">
-                   <FaBook /> Book Detail
-                  </a>
+                  <Link to={`/book/${object.bookId}`} className="btn btn-primary">
+                    <FaBook /> Book Detail
+                  </Link>
                   </td>
                   <td>
                     {object.comment} 
@@ -84,7 +85,7 @@ function CommentsList() {
 
           {user === null && (
           <div>
-          Please <a href="/signin">log in</a> to see your recent reviews. 
+          Please <Link to="/signin">log in</Link> to see your recent reviews.
           </div>
           
           )}

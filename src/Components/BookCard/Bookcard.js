@@ -127,7 +127,7 @@ function BookCard() {
             
             {user === null && (
               <div>
-                Please <a href="/signin">log in</a> before adding comment. 
+                Please <Link to="/signin">log in</Link> to add comment. 
               </div>
             )}
 

@@ -123,7 +123,9 @@ function NavBar() {
                 Sign In
               </Link>
               <li className="nav-item btn btn-info ms-2">
-                <a className="nav-link" href="/signup" style={{ marginRight: '20px' }}>Sign Up</a>
+              <Link to="/signup" className="nav-link" style={{ marginRight: '20px' }}>
+                Sign up
+              </Link>
               </li>
             </ul>
           </div>
