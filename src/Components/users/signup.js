@@ -21,7 +21,7 @@ function Signup() {
       // Store the user data in local storage
       localStorage.setItem('currentUser', JSON.stringify(userData));
 
-      navigate("/profile");
+      navigate("/signin");
     } catch (err) {
       setError(err.response.data.message);
     }

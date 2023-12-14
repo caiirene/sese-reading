@@ -1,54 +1,68 @@
-// import * as client from "../users/client";
-// import { useState, useEffect } from "react";
-// import { useNavigate, Link, useParams } from "react-router-dom";
+import * as userClient from "../users/client";
+import * as bookClient from "../books/client";
+import { useState, useEffect } from "react";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
-// function Profile() {
-//   const { id } = useParams();
-//   const [account, setAccount] = useState(null);
-//   const navigate = useNavigate();
+function AuthorProfile() {
+  const { author } = useParams();
+  const [account, setAccount] = useState();
+  console.log("author",author);
+  const [works, setWorks] = useState([]);
+  const navigate = useNavigate();
 
-//   const findUserById = async (id) => {
-//     const user = await client.findUserById(id);
-//     setAccount(user);
-//   };
+  const userData = localStorage.getItem("currentUser");
+  const userObj = JSON.parse(userData);
+  const [currUser, setUser] = useState(userObj);
+  
 
-//   const fetchAccount = async () => {
-//     const account = await client.account();
-//     setAccount(account);
-//   };
+  const findUserById = async (author) => {
+    const user = await userClient.findUserById(author);
+    console.log(user)
+    setAccount(user);
+    fetchAuthorWorks(user._id); // Assuming the user object has an _id property
+  };
 
-//   useEffect(() => {
-//     if (id) {
-//       findUserById(id);
-//     } else {
-//       fetchAccount();
-//     }
-//   }, [id]);
 
-//   return (
-//     <div className="container mt-5">
-//       <h1 className="text-center">Profile</h1>
-//       <div className="d-flex align-items-center justify-content-center">
-//         {account && (
-//           <div className="card" style={{ width: "18rem" }}>
-//             <div className="card-body">
-//               <h5 className="card-title">Profile Information</h5>
-//               <label className="fw-bold">Username</label>
-//               <p className="card-text">{account.username}</p>
-//               <label className="fw-bold">Email</label>
-//               <p className="card-text">{account.email}</p>
-//               {/* Add other profile information as needed */}
-//               <div className="text-center mt-4">
-//                 <Link to="/account" className="btn btn-primary">
-//                   Edit Information
-//                 </Link>
-//               </div>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
+  const fetchAuthorWorks = async (author) => {
+    const authorWorks = await bookClient.fetchBooksByAuthor(author);
+    console.log(authorWorks)
+    setWorks(authorWorks);
+    console.log(works);
+  };
+;
 
-// export default Profile;
+  useEffect(() => {
+    if (author) {
+      findUserById(author);
+    }
+  }, []);
+
+
+  return (
+    <div className="container mt-5">
+      <h1 className="text-center">Author Profile</h1>
+      <div className="d-flex align-items-center justify-content-center">
+        {account && currUser?._id && (
+          <div className="card" style={{ width: "18rem" }}>
+            <div className="card-body">
+              <h5 className="card-title">Profile Information</h5>
+
+              <label className="fw-bold">Author Name</label>
+              <p className="card-text">{account.username}</p >
+              <label className="fw-bold">Email</label>
+              <p className="card-text">{account.email}</p >
+              <label className="fw-bold">Works</label>
+              <ul>
+                {works.map((work, index) => (
+                  <li key={index}>{work.name}</li> // Assuming the work object has a title property
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default AuthorProfile;

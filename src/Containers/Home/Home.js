@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import FeatureBooks from "../../Components/books/featureBooks";
+import CommentsList from "../../Components/Comments/commentslist";
 function Home() {
   return (
     <div className="home">
@@ -30,6 +31,8 @@ function Home() {
           </div>
         </div>
       </div>
+      <h1 className="text-center">My Recent Reviews</h1>
+      <CommentsList />
     </div>
   );
 }

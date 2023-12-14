@@ -1,9 +1,11 @@
 import axios from "axios";
 
-const BASE_API = "http://localhost:56100"; 
+//const BASE_API = "http://localhost:56100"; 
 //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
+export const BASE_API ='https://sese-reading-node.onrender.com';
 
 const BOOKS_API = `${BASE_API}/api/books`;
+
 
 export const createBook = async (book) => {
   try {
@@ -54,3 +56,14 @@ export const deleteBook = async (bookId) => {
     throw error;
   }
 };
+
+export const fetchBooksByAuthor = async (authorId) => {
+  try {
+    const response = await axios.get(`${BOOKS_API}/author/${authorId}`);
+    console.log("response",response);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching books by author with ID ${authorId}:`, error);
+    throw error;
+  }
+}

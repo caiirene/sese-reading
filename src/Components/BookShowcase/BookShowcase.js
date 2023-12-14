@@ -59,14 +59,6 @@ function BookShowcase() {
         </div>
       </div>
 
-      <button
-        className="writer-button"
-        onClick={() => {
-          /* logic to go to writer page */
-        }}
-      >
-        go to writer page
-      </button>
 
       <section className="recommendation">
         <h2>Recommendation 👍👍👍👍</h2>

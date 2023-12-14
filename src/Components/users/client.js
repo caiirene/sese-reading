@@ -2,9 +2,11 @@ import axios from "axios";
 const request = axios.create({
   withCredentials: true,
 });
-export const BASE_API = 
-   'http://localhost:56100';
-   //process.env.REACT_APP_API_BASE ||
+// export const BASE_API =
+
+//   process.env.REACT_APP_API_BASE || 'http://localhost:56100';
+
+  export const BASE_API ='https://sese-reading-node.onrender.com';
 
 export const USERS_API = `${BASE_API}/api/users`;
 export const signin = async (credentials) => {
@@ -28,6 +30,7 @@ export const createUser = async (user) => {
   return response.data;
 };
 export const findUserById = async (id) => {
+  console.log("findUserById",id);
   const response = await request.get(`${USERS_API}/${id}`);
   return response.data;
 };
