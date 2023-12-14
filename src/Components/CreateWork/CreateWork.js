@@ -32,7 +32,7 @@ const CreateBook = () => {
       coverImage
     };
 
-    axios.post('http://localhost:56100/books', data)
+    axios.post('https://localhost:56100/books', data)
       .then(() => {
         enqueueSnackbar('Book Created successfully', { variant: 'success' });
         navigate('/');

@@ -9,6 +9,7 @@ import AuthorZone from "./Components/AuthorZone/AuthorZone";
 import Myworks from "./Components/Myworks/Myworks";
 import EditBook from "./Components/EditBook/EditBook";
 import CreateWork from "./Components/CreateWork/CreateWork";
+import CreateChapter from "./Components/CreateChapter/CreateChapter";
 import BookShowcaseAdministrators from "./Components/BookShowcaseAdministrators/BookShowcaseAdministrators";
 import Signin from "./Components/users/signin";
 import Signup from "./Components/users/signup";
@@ -38,7 +39,9 @@ function App() {
             <Route path="/authorzone" element={<AuthorZone />} />
             <Route path="/myworks" element={<Myworks />} />
             <Route path="/editbook/:bookId" element={<EditBook />} />
+            <Route path="/editchapter/:chapterId" element={<EditChapter />} />
             <Route path="/creatework" element={<CreateWork />} />
+            <Route path="/createchapter/:bookId" element={<CreateChapter />} />
             <Route path="/bookshowcase" element={<BookShowcase />} />
             <Route
               path="/bookshowcaseadministrators"
