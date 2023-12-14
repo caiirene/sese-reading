@@ -66,7 +66,7 @@ function EditBook() {
         navigate(`/editchapter/${chapterId}`);
     };
 
-    const navigateToCreatChapter = (bookId) => {
+    const navigateToCreatChapter = () => {
         // 导航到 '/editbook/:bookId' 路径
         navigate(`/createchapter/${bookId}`);
     };
@@ -75,11 +75,12 @@ function EditBook() {
         <div>
             <h1>bookId here{bookId}</h1>
             <h2>{curBook.name}</h2>
-            <p>{curBook.description}</p>
 
-            <input
+            <textarea
+                rows="5"
+                cols="50"
                 onChange={(e) => setCurBook({ ...curBook, description: e.target.value })}
-                className="form-control" type="text" value={curBook.introduction} />
+                className="form-control" type="text" value={curBook.description} />
             <button onClick={updateBook}
                 className="w-100 btn btn-danger mb-2">
                 change book introduction
@@ -92,12 +93,12 @@ function EditBook() {
                         <div key={index} className="list-group-item list-group-item-secondary align-items-center mb-4">
                             <h3>{chapter.chapterName}</h3>
                             <p>{chapter._id}</p>
-                            <button onClick={()=>navigateToEditChapter(chapter._id)}>edit chapter</button>
-                            <button onClick={()=>navigateToCreatChapter(bookId)}>create chapter</button>
+                            <button onClick={() => navigateToEditChapter(chapter._id)}>edit chapter</button>
                         </div>
                     ))}
+                <button onClick={() => navigateToCreatChapter()}>create chapter</button>
             </div>
-            <button>creat new work</button>
+
         </div>
     );
 }

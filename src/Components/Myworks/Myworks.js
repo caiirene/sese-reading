@@ -55,8 +55,7 @@ function Myworks() {
   return (
     <div>
       <h2>My Works</h2>
-      <h2>{JSON.stringify(account)}</h2>
-      <h2>{JSON.stringify(booksList)}</h2>
+
       <div className="list-group">
 
         {booksList
@@ -64,8 +63,7 @@ function Myworks() {
             <div key={index} className="list-group-item list-group-item-secondary align-items-center mb-4">
               <h3>{book.name}</h3>
               <p>{book.description}</p>
-              <p>{book._id}</p>
-              <p>look!!!!!!!!!!!!!</p>
+
               <button onClick={()=>navigateToEditBook(book._id)}>work on this book</button>  
             </div>
           ))}
