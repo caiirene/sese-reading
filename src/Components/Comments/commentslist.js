@@ -1,18 +1,16 @@
 import * as client from "../users/client";
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { findCommentByUserId} from "../Comments/client";
+import { findCommentByUserId} from "./client";
 import { FaBook } from "react-icons/fa";
-import CommentsList from "../../Components/Comments/commentslist";
 
 
-function Profile() {
+function CommentsList() {
   const { id } = useParams();
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
 
   const userData = localStorage.getItem("currentUser");
-  //const userObj = JSON.parse(userData);
   const userObj = userData ? JSON.parse(userData) : null;
   const [user, setUser] = useState(userObj);
 
@@ -49,38 +47,39 @@ function Profile() {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center">Profile</h1>
-      {account && user?._id === account?._id && (
-      <div className="d-flex align-items-center justify-content-center">
-          <div className="card" style={{ width: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title">Account Information</h5>
-              <label className="fw-bold">Username</label>
-              <p className="card-text">{account.username}</p>
-              <label className="fw-bold">Email</label>
-              <p className="card-text">{account.email}</p>
-              {/* Add other profile information as needed */}
-              <div className="text-center mt-4">
-                <Link to="/account" className="btn btn-primary">
-                  Edit Information
-                </Link>
-              </div>
-            </div>
-          </div>
-      </div>
-      )}
-
-      {user === null && (
-        <div>
-        Please <a href="/signin">log in</a> to see your account information. 
-        </div>
-        
-      )}
 
       <br></br>
-      <h1 className="text-center">My Recent Reviews</h1>
       {account && user?._id === account?._id && (
-        <CommentsList />
+      <div className="d-flex align-items-center justify-content-center">
+        <table className="table mx-auto">
+              <thead>
+                <tr>
+                  <td className = "tableHeaderStyle">Book</td>
+                  <td className = "tableHeaderStyle">Comment</td>
+                  <td className = "tableHeaderStyle">Time</td>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              {comments.map((object) => (
+                <tr key ={object?._id} >
+                  <td>
+                  <a href={`/book/${object.bookId}`} className="btn btn-primary">
+                   <FaBook /> Book Detail
+                  </a>
+                  </td>
+                  <td>
+                    {object.comment} 
+                  </td>
+                  <td>
+                    {object.timestamp}
+                  </td>
+                </tr>
+                
+              ))}
+              </tbody>
+            </table>
+          </div>
           )}
 
           {user === null && (
@@ -98,4 +97,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default CommentsList;

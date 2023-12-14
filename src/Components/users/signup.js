@@ -14,8 +14,14 @@ function Signup() {
 
   const signup = async () => {
     try {
-      await client.signup(credentials);
-      navigate("/profile");
+      const response = await client.signup(credentials);
+      // Assuming the response contains the user data
+      const userData = response.data;
+
+      // Store the user data in local storage
+      localStorage.setItem('currentUser', JSON.stringify(userData));
+
+      navigate("/signin");
     } catch (err) {
       setError(err.response.data.message);
     }

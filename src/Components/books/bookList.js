@@ -17,6 +17,7 @@ function BookList() {
   useEffect(() => {
     fetchBooks();
   }, []);
+
   const createBook = async () => {
     try {
       const newBook = await client.createBook(book);
@@ -46,65 +47,37 @@ function BookList() {
 
   return (
     <div>
-      <input
-        value={book.name}
-        className="form-control"
-        onChange={(e) => setBook({ ...book, name: e.target.value })}
-      />
-      <input
-        value={book.description}
-        className="form-control"
-        onChange={(e) => setBook({ ...book, description: e.target.value })}
-      />
-      <input
-        value={book.author}
-        className="form-control"
-        onChange={(e) => setBook({ ...book, author: e.target.value })}
-      />
-      <hr />
-      <button onClick={createBook}>Add</button>
-      <button onClick={updateBook}>Update</button>
       <div className="row d-flex justify-content-start flex-wrap">
         {books.map((book) => (
           <div
             key={book._id}
             className="col-auto ms-5 mt-4 mb-4"
-            style={{ width: "260px" }}
+            style={{ width: "280px" }}
           >
             <div className="card h-100">
               <div
-                style={{ backgroundColor: "#a183d7", height: "150px" }} 
+                style={{
+                  backgroundImage: `url(${book.coverImage})`,
+                  backgroundSize: "70%",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  height: "250px",
+                  border: "1px solid #ddd",
+                }}
               ></div>
-              <div className="card-body">
+              <div
+                className="card-body bg-body-tertiary"
+                style={{ height: "90px" }}
+              >
                 <Link to={`../book/${book._id}`}>
-                  <h5 className="card-title">{book.name}</h5>
+                  <h5 className="card-title mt-1">{book.title}</h5>
                 </Link>
-
-                <p className="card-text">
-                  {book.name}
-                  <br />
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault();
-                      deleteBook(book);
-                    }}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setBook(book);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </p>
               </div>
             </div>
           </div>
         ))}
       </div>
+
     </div>
   );
 }
