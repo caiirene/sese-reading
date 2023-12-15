@@ -6,22 +6,32 @@ function Account() {
   const [account, setAccount] = useState(null);
   const [userRole, setUserRole] = useState("");
   const navigate = useNavigate();
+  const userData = localStorage.getItem("currentUser");
+  const userObj = userData ? JSON.parse(userData) : null;
+  const [currUser, setUser] = useState(userObj);
+
   const findUserById = async (id) => {
     const user = await client.findUserById(id);
     setAccount(user);
   };
 
-  const fetchAccount = async () => {
+  /*const fetchAccount = async () => {
     const account = await client.account();
     setAccount(account);
     setUserRole(account.role)
     console.log("account",account)
+  };*/
+  const findCurrentUser = async (id) => {
+    const user = await client.findUserById(id);
+    setAccount(user);
+    setUserRole(user.role)
   };
+  
   useEffect(() => {
     if (id) {
       findUserById(id);
     } else {
-      fetchAccount();
+      findCurrentUser(currUser?._id);
     }
   }, []);
 
