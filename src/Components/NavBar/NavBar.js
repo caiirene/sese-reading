@@ -48,29 +48,6 @@ function NavBar() {
     navigate("/signup");
   };
 
-  // const handleSignup = async (signupData) => {
-  //   try {
-  //     const response = await fetch('/api/signup', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(signupData),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Signup failed');
-  //     }
-
-  //     const userData = await response.json();
-  //     localStorage.setItem('currentUser', JSON.stringify(userData));
-  //     setUser(userData); // Update the user state
-  //     navigate('/'); // Optionally redirect the user
-  //   } catch (error) {
-  //     console.error('There was an error during signup:', error);
-  //   }
-  // };
-
 
   const renderNavLinks = () => {
     switch (user?.role) {
@@ -109,6 +86,8 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#e3f2fd", fontFamily: "'Open Sans', sans-serif" }}>
       <div className="container-fluid">
+      <img src="WebLogo.png" alt="logo"/>
+
         <p >
           LOGO NAME
         </p>

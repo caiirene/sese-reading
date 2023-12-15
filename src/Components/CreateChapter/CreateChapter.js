@@ -46,7 +46,7 @@ function CreateChapter() {
 
     return (
         <div>
-            <h1>chapterId here</h1>
+
             <input
                 onChange={(e) => setNewChapter({ ...newChapter, chapterName: e.target.value })}
                 className="form-control" type="text" value={newChapter.chapterName} />
