@@ -40,7 +40,7 @@ function EditBook() {
     //allchaptersinbooksorted/:bookId"
     const fetchChapters = async (bookId) => {
         try {
-            const response = await axios.get(`${CHAPTER_API_BASE}allchaptersinbooksorted/${bookId}`);
+            const response = await axios.get(`${CHAPTER_API_BASE}allchaptersinbook/${bookId}`);
             setChaptersList(response.data);
         } catch (error) {
             console.error("Error fetching books in <EditBook/> fetchChapters:", error);
