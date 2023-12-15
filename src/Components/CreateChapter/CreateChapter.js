@@ -13,7 +13,7 @@ function CreateChapter() {
     const { bookId } = useParams();
     const BASE_API = process.env.REACT_APP_API_BASE; 
 
-    const CHAPTER_API_BASE = `${BASE_API}/api/chapter/`;
+    const CHAPTER_API_BASE = `${BASE_API}/api/chapters/`;
 
     const [curAccount, setAccount] = useState({ username: "" })
 
