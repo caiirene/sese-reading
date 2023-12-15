@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import "./App.css";
 import { useEffect, useState } from "react";
 import Home from "./Containers/Home/Home";
@@ -31,7 +32,7 @@ import ReadChapter from "./Components/ReadChapter/ReadChapter";
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <HashRouter>
         <div className="App">
           <NavBar />
           <Routes>
@@ -71,7 +72,7 @@ function App() {
 
           </Routes>
         </div>
-      </Router>
+      </HashRouter>
     </Provider>
   );
 }
