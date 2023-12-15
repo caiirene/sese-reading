@@ -1,7 +1,7 @@
 import * as client from "../users/client";
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { findCommentByUserId} from "./client";
+import { findCommentByUserId, deleteComment} from "./client";
 import { FaBook } from "react-icons/fa";
 
 
@@ -45,8 +45,18 @@ function CommentsList() {
     }
   }, [id]);
 
+  const handleDelete = async (commentId) => {
+    try {
+      await deleteComment(commentId);
+      fetchCommentByUserId();
+    } catch (error) {
+    }
+  };
+  
+  
+
   return (
-    <div className="container mt-5">
+    <div className="container mt-3">
 
       <br></br>
       {account && user?._id === account?._id && (
@@ -57,7 +67,7 @@ function CommentsList() {
                   <td className = "tableHeaderStyle">Book</td>
                   <td className = "tableHeaderStyle">Comment</td>
                   <td className = "tableHeaderStyle">Time</td>
-                  
+                  <td className = "tableHeaderStyle">Delete</td>
                 </tr>
               </thead>
               <tbody>
@@ -73,6 +83,9 @@ function CommentsList() {
                   </td>
                   <td>
                     {object.timestamp}
+                  </td>
+                  <td>
+                    <button className="btn btn-danger"  onClick={() => handleDelete(object?._id)}>Delete</button>
                   </td>
                 </tr>
                 
