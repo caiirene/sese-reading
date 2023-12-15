@@ -3,6 +3,7 @@ import BookImage from "../BookImages/book-image.png";
 import React, { useEffect, useState } from "react";
 import * as client from "../books/client";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill }
   from "react-icons/bs";
 import axios from "axios";
@@ -12,6 +13,7 @@ function BookCard() {
   const { bookId } = useParams();
   const [book, setBook] = useState(null);
   const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
 
   const userData = localStorage.getItem("currentUser");
   const userObj = JSON.parse(userData);
