@@ -15,6 +15,7 @@ function Account() {
     const account = await client.account();
     setAccount(account);
     setUserRole(account.role)
+    console.log("account",account)
   };
   useEffect(() => {
     if (id) {
@@ -27,12 +28,16 @@ function Account() {
   const save = async () => {
     console.log("saving account", account)
     await client.updateUser(account);
+    console.log("saved account", account)
   };
 
   const signout = async () => {
     await client.signout();
     navigate("/signin");
   };
+
+  console.log("account",account)
+
 
   return (
     <div className="d-flex align-items-center justify-content-center mt-5">
