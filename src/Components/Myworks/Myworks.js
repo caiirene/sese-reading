@@ -37,10 +37,12 @@ function Myworks() {
     findUserById(currUser?._id)
     //const curAccount = await client.account();
     //setAccount(curAccount);
+    console.log("fetchaccount", account);
   };
 
   const fetchAllBooksFromAuthor = async (authorId) => {
     try {
+      console.log("authorId", authorId)
       const response = await axios.get(`${BOOKS_API_BASE}author/${authorId}`);
       setBooksList(response.data); // 假设书籍数据在 response.data 中
     } catch (error) {
@@ -51,7 +53,7 @@ function Myworks() {
 
   useEffect(() => {
     fetchAccount();
-    console.log(account)
+    console.log(account);
     console.log("hello!!!!!!!!!!!!");
   }, []);
 
