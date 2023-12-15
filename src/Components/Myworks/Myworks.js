@@ -9,20 +9,36 @@ import { Link } from 'react-router-dom';
 
 import EditBook from "../EditBook/EditBook";
 
+
+// 'https://sese-reading-node.onrender.com' || "http://localhost:56100"
+const BASE_API = process.env.REACT_APP_API_BASE; 
+
+const BOOKS_API_BASE = `${BASE_API}/api/books/`;
+
 function Myworks() {
 
-  //const BOOKS_API_BASE = "https://sese-reading-node.onrender.com/api/books/" ;
-  const BOOKS_API_BASE =  "https://sese-reading-node.onrender.com/api/books/"
-
+  
 
   const [account, setAccount] = useState(null);
   const [booksList, setBooksList] = useState([]);
   const navigate = useNavigate();
 
-  const fetchAccount = async () => {
-    const curAccount = await client.account();
-    setAccount(curAccount);
+  const userData = localStorage.getItem("currentUser");
+  const userObj = userData ? JSON.parse(userData) : null;
+  const [currUser, setUser] = useState(userObj);
+
+  const findUserById = async (id) => {
+    const user = await client.findUserById(id);
+    setAccount(user);
   };
+
+
+  const fetchAccount = async () => {
+    findUserById(currUser?._id)
+    //const curAccount = await client.account();
+    //setAccount(curAccount);
+  };
+
   const fetchAllBooksFromAuthor = async (authorId) => {
     try {
       const response = await axios.get(`${BOOKS_API_BASE}author/${authorId}`);
@@ -35,6 +51,7 @@ function Myworks() {
 
   useEffect(() => {
     fetchAccount();
+    console.log(account)
     console.log("hello!!!!!!!!!!!!");
   }, []);
 
