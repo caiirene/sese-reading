@@ -45,6 +45,7 @@ function NavBar() {
     navigate("/signin");
   };
   const signUp = async () => {
+    navigate("/signup");
   };
 
   // const handleSignup = async (signupData) => {
@@ -125,14 +126,10 @@ function NavBar() {
           <div className="d-flex">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item btn btn-info ms-2">
-              <NavLink to="/signin" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
-                Sign In
-              </NavLink>
+              <li className="nav-link" onClick={signIn}>Sign In</li>
               </li>
               <li className="nav-item btn btn-info ms-2">
-              <NavLink to="/signup" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
-                Sign up
-              </NavLink>
+              <li className="nav-link" onClick={signUp}>Sign up</li>
               </li>
             </ul>
           </div>
@@ -140,7 +137,7 @@ function NavBar() {
           <div className="d-flex">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item flow-end btn btn-info">
-                <NavLink className="nav-link" onClick={signOut}>Sign Out</NavLink>
+                <li className="nav-link" onClick={signOut}>Sign Out</li>
               </li>
             </ul>
           </div>
