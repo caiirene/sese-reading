@@ -6,6 +6,7 @@ function Account() {
   const [account, setAccount] = useState(null);
   const [userRole, setUserRole] = useState("");
   const navigate = useNavigate();
+
   const userData = localStorage.getItem("currentUser");
   const userObj = userData ? JSON.parse(userData) : null;
   const [currUser, setUser] = useState(userObj);
@@ -26,7 +27,7 @@ function Account() {
     setAccount(user);
     setUserRole(user.role)
   };
-  
+
   useEffect(() => {
     if (id) {
       findUserById(id);
@@ -91,6 +92,7 @@ function Account() {
             <label>Role</label>
             <select
               className="form-control mt-2"
+              value={account.role}
               onChange={(e) => setAccount({ ...account, role: e.target.value })}
             >
               <option value="admin">Admin</option>
