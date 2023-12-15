@@ -60,10 +60,19 @@ function CommentsList() {
 
   return (
     <div className="container mt-3">
+      
+      {user?.role !== "admin" && (
+        <div>
+          <br></br>
+          <h3 className="text-center">My Recent Reviews</h3>
+          <br></br>
+        </div>
+      )}
+      
+      {account && user?._id === account?._id && user?.role !== "admin" && (
 
-      <br></br>
-      {account && user?._id === account?._id && (
       <div className="d-flex align-items-center justify-content-center">
+        
         <table className="table mx-auto">
               <thead>
                 <tr>
