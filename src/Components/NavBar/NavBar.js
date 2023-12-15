@@ -5,8 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Logo from 'WebLogo.png';
 
 function NavBar() {
+
+  const [logo,setLogo] = useState(Logo);
 
   const getInitialUser = () => {
     const storedUser = localStorage.getItem("currentUser");
@@ -86,11 +89,9 @@ function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#e3f2fd", fontFamily: "'Open Sans', sans-serif" }}>
       <div className="container-fluid">
-      <img src="WebLogo.png" alt="logo"/>
 
-        <p >
-          LOGO NAME
-        </p>
+      <img src={logo} />
+
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
