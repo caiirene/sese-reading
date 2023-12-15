@@ -1,7 +1,7 @@
 import * as client from "../users/client";
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { findCommentByUserId, deleteComment} from "./client";
+import { findCommentByUserId, deleteComment, formatDate} from "./client";
 import { FaBook } from "react-icons/fa";
 
 
@@ -36,18 +36,7 @@ function CommentsList() {
     }
   }
 
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1; // getMonth() returns 0-11
-    const day = date.getDate();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    return formattedDate;
-  };
+  
 
 
   useEffect(() => {
