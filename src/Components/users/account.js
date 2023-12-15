@@ -37,9 +37,9 @@ function Account() {
   }, []);
 
   const save = async () => {
-    console.log("saving account", account)
+    //console.log("saving account", account)
     await client.updateUser(account);
-    console.log("saved account", account)
+    //console.log("saved account", account)
   };
 
   const signout = async () => {
@@ -47,7 +47,6 @@ function Account() {
     navigate("/signin");
   };
 
-  console.log("account",account)
 
 
   return (
@@ -101,6 +100,9 @@ function Account() {
             </select>
             <button className="btn btn-primary w-100 mt-2 " onClick={save}>
               <Link className="text-white text-decoration-none" to="/profile">Save</Link>
+            </button>
+            <button className="btn btn-primary w-100 mt-2 " onClick={save}>
+              <Link className="text-white text-decoration-none" to="/profile">Back to Profile</Link>
             </button>
             <button className="btn btn-danger w-100 mt-2" onClick={signout}>
               Signout

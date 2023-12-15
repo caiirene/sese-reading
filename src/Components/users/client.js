@@ -13,7 +13,7 @@ export const signin = async (credentials) => {
 };
 export const account = async () => {
   const response = await request.post(`${USERS_API}/account`);
-  console.log("client account",response.data)
+  //console.log("client account",response.data)
   return response.data;
 };
 export const updateUser = async (user) => {
@@ -29,9 +29,9 @@ export const createUser = async (user) => {
   return response.data;
 };
 export const findUserById = async (id) => {
-  console.log("findUserById",id);
+  //console.log("findUserById",id);
   const response = await request.get(`${USERS_API}/${id}`);
-  console.log("findUserById",response.data);
+  //console.log("findUserById",response.data);
   return response.data;
 };
 export const deleteUser = async (user) => {
