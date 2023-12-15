@@ -31,7 +31,8 @@ function Home() {
           </div>
         </div>
       </div>
-      <h1 className="text-center">My Recent Reviews</h1>
+      <br></br>
+      <h3 className="text-center">My Recent Reviews</h3>
       <CommentsList />
     </div>
   );
