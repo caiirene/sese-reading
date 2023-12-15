@@ -49,7 +49,7 @@ function Profile() {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center">Profile</h1>
+      <h3 className="text-center">Profile</h3>
       {account && user?._id === account?._id && (
       <div className="d-flex align-items-center justify-content-center">
           <div className="card" style={{ width: "18rem" }}>
@@ -81,7 +81,6 @@ function Profile() {
       )}
 
       <br></br>
-      <h1 className="text-center">My Recent Reviews</h1>
       {account && user?._id === account?._id && (
         <CommentsList />
           )}

@@ -32,7 +32,7 @@ function Home() {
         </div>
       </div>
       <br></br>
-      <h3 className="text-center">My Recent Reviews</h3>
+      
       <CommentsList />
     </div>
   );
