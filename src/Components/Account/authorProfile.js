@@ -45,7 +45,6 @@ function AuthorProfile() {
         {account && currUser?._id && (
           <div className="card" style={{ width: "18rem" }}>
             <div className="card-body">
-              <h5 className="card-title">Profile Information</h5>
 
               <label className="fw-bold">Author Name</label>
               <p className="card-text">{account.username}</p >
@@ -58,6 +57,15 @@ function AuthorProfile() {
                 ))}
               </ul>
             </div>
+          </div>
+        )}
+      </div>
+      <div>
+        {currUser === null && (
+          <div>
+            <br></br>
+            Please <Link to ={"/signin"}>log in</Link> to see authors' profile. 
+
           </div>
         )}
       </div>

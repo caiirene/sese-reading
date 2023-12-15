@@ -88,7 +88,7 @@ function Profile() {
 
           {user === null && (
           <div>
-          Please <a href="/signin">log in</a> to see your recent reviews. 
+          Please <Link to ={"/signin"}>log in</Link> to see your recent reviews. 
           </div>
           
           )}

@@ -78,7 +78,6 @@ function NavBar() {
             <NavLink className="nav-link" to="/" exact style={{ marginRight: '20px' }}>Home</NavLink>
             <NavLink className="nav-link" to="/admin/users" exact style={{ marginRight: '20px' }}>Manage Users</NavLink>
             <NavLink className="nav-link" to="/admin/books" exact style={{ marginRight: '20px' }}>Manage Books</NavLink>
-            <NavLink className="nav-link" to="/admin/comments" exact style={{ marginRight: '20px' }}>Manage Comments</NavLink>
           </>
         );
       default:

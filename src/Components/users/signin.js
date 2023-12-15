@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 function Signin() {
+  const [error, setError] = useState("");
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -17,22 +18,50 @@ function Signin() {
 
 
   const navigate = useNavigate();
+
   const signin = async () => {
-    const data = await client.signin(credentials); 
-    setUserId(data?._id);
-    if (userId !== null) {
+    const data = await client.signin(credentials);
+
+    if (!data || data._id === undefined || data._id === null) {
+      // User not found in the database, show an alert
+      alert("Incorrect username or password. Please try again.");
+    } else {
+      setUserId(data._id);
       setCredentials({ ...credentials, isAuthenticated: true });
       const jsonString = JSON.stringify(data);
       localStorage.setItem('currentUser', jsonString);
+      navigate("/");
+      window.location.reload();
+    }
+  };
+
+
+  /*const signin = async () => {
+      const data = await client.signin(credentials); 
+    setUserId(data?._id);
+    if (userId !== undefined) {
+      console.log(userId.userId);
+      setCredentials({ ...credentials, isAuthenticated: true });
+      const jsonString = JSON.stringify(data);
+      localStorage.setItem('currentUser', jsonString); 
+    }
+    if (userId === undefined) {
+      setError(data.message);
     }
     navigate("/");
     window.location.reload();
-  };
+  };*/
+    
+    
+    
+  
 
   return (
     <div  className="d-flex align-items-center justify-content-center mt-5">
       <div className="row w-25">
         <h1>Sign in</h1>
+        {}
+        {error && (<div>{error}</div>)}
         <label className="text-start">Username</label>
         <input
           className="form-control mt-2"
