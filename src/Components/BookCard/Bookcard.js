@@ -16,7 +16,7 @@ function BookCard() {
   const userData = localStorage.getItem("currentUser");
   const userObj = JSON.parse(userData);
   const [user, setUser] = useState(userObj);
-  const [comment, setComment] = useState({readerId: userObj?._id, bookId: bookId});
+  const [comment, setComment] = useState({ readerId: userObj?._id, bookId: bookId });
   // , readerName: userObj.name 
   const createComment = async () => {
     try {
@@ -45,6 +45,11 @@ function BookCard() {
     }
   };
 
+  const navigateToReadBook = (bookid) => {
+    // 导航到 '/editbook/:bookId' 路径
+    navigate(`/readbook/${bookid}`);
+  };
+
 
   useEffect(() => {
     fetchBookDetails();
@@ -68,7 +73,7 @@ function BookCard() {
           <div className="book-card-details">
             <h1 className="book-card-title">{book.name}</h1>
             <p className="card-text">
-              Author: 
+              Author:
               <Link to={`/author/${book.author}`}>
                 {book.authorName}
               </Link>
@@ -106,70 +111,71 @@ function BookCard() {
             <span>{book.description}</span>
           </p>
           <div className="book-card-action-buttons">
-          <button className="action-button">Start Reading</button>
-          <button className="action-button">Add to book shelf</button>
-        </div>
-        <br></br>
+            <button className="action-button"
+            onClick={()=>navigateToReadBook(bookId)}>Start Reading</button>
+            <button className="action-button">Add to book shelf</button>
+          </div>
+          <br></br>
           <p>
             <h4><strong>Leave Comment</strong></h4>
             <br />
             {user && (<div><div class="col">
-              <input className="w-75 form-control"  
-              defaultValue=""
-              onChange={(e) => {
-                e.preventDefault();
-                setComment({ ...comment, comment: e.target.value })
-                }}/>
-              </div>
+              <input className="w-75 form-control"
+                defaultValue=""
+                onChange={(e) => {
+                  e.preventDefault();
+                  setComment({ ...comment, comment: e.target.value })
+                }} />
+            </div>
               <button className="w-75 action-button" onClick={createComment}>
                 Submit
               </button></div>)}
-            
+
             {user === null && (
               <div>
-                Please <Link to="/signin">log in</Link> to add comment. 
+                Please <Link to="/signin">log in</Link> to add comment.
               </div>
             )}
 
-              
+
             <div className="text-center">
               <br></br><br></br>
-            <h3 className = "tableTitleStyle">Recent Comments</h3>
-            <table className="table mx-auto">
-              <thead>
-                <tr>
-                  <td className = "tableHeaderStyle">Comment</td>
-                  <td className = "tableHeaderStyle">Time</td>
-                </tr>
-              </thead>
-              <tbody>
-              {comments.map((object) => (
-                <tr key ={object?._id} >
-                  <td>
-                    {object.comment} 
-                  </td>
-                  <td>
-                    {object.timestamp}
-                  </td>
-                  <td>
-                    {object.readerId}
-                  </td>
-                  <td>
-                    {object.bookId}
-                  </td>
-                </tr>
-                
-              ))}
-              </tbody>
-            </table>
-          </div>
+              <h3 className="tableTitleStyle">Recent Comments</h3>
+              <table className="table mx-auto">
+                <thead>
+                  <tr>
+                    <td className="tableHeaderStyle">Comment</td>
+                    <td className="tableHeaderStyle">Time</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comments.map((object) => (
+                    <tr key={object?._id} >
+                      <td>
+                        {object.comment}
+                      </td>
+                      <td>
+                        {object.timestamp}
+                      </td>
+                      <td>
+                        {object.readerId}
+                      </td>
+                      <td>
+                        {object.bookId}
+                      </td>
+                    </tr>
+
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </p>
         </div>
 
       </div>
       <div className="book-card-details"></div>
     </div>
-  
+
   );
 }
 
