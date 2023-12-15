@@ -11,7 +11,6 @@ const CreateBook = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [coverImage, setCoverImage] = useState(DefaultImage);
-  const [coverFile, setCoverFile] = useState(null);
   const [account, setAccount] = useState(null); // Account state to store user data
 
   const navigate = useNavigate();
@@ -26,19 +25,6 @@ const CreateBook = () => {
     fetchAccount();
   }, []);
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setCoverFile(file); // Store the file
-
-      // Update the image preview
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCoverImage(reader.result); // Set the preview image
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSaveBook = () => {
     if (!account) {
@@ -52,10 +38,6 @@ const CreateBook = () => {
     formData.append('author', account._id); // Use user's ID as author
     formData.append('authorName', account.name); // Use user's name as authorName
     formData.append('pubDate', new Date().toISOString()); // Set current time as publication date
-
-    if (coverFile) {
-      formData.append('coverImage', coverFile);
-    }
 
     axios.post(BOOKS_API_BASE, formData, {
       headers: {
@@ -74,19 +56,7 @@ const CreateBook = () => {
 
   return (
     <div className='create-book-container'>
-      <div className="image-upload-container">
-        <label htmlFor="cover-image-upload" className="upload-label">
-          <img src={coverImage || DefaultImage} alt="Cover" className="cover-image-preview" />
-        </label>
-        <input
-          type="file"
-          id="cover-image-upload"
-          name="coverImage"
-          accept="image/*"
-          className="cover-image-input"
-          onChange={handleImageChange}
-        />
-      </div>
+
       {/* Title Input */}
       <div className='input-container'>
           <label className='input-label'>Title</label>
