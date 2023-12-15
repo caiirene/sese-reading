@@ -6,6 +6,7 @@ import { FaBook } from "react-icons/fa";
 
 
 function CommentsList() {
+  
   const { id } = useParams();
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
@@ -34,6 +35,19 @@ function CommentsList() {
       console.log(err);
     }
   }
+
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // getMonth() returns 0-11
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return formattedDate;
+  };
 
 
   useEffect(() => {
@@ -72,7 +86,7 @@ function CommentsList() {
                     {object.comment} 
                   </td>
                   <td>
-                    {object.timestamp}
+                    {formatDate(object.timestamp)}
                   </td>
                 </tr>
                 
