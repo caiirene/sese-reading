@@ -12,8 +12,10 @@ function EditBook() {
     const { bookId } = useParams();
     console.log(bookId);
 
-    const BOOKS_API_BASE = "https://sese-reading-node.onrender.com/api/books/";
-    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
+    const BASE_API = process.env.REACT_APP_API_BASE; 
+
+    const CHAPTER_API_BASE = `${BASE_API}/api/chapter/`;
+    const BOOKS_API_BASE = `${BASE_API}/api/books/`;
 
     const [account, setAccount] = useState(null);
     const [curBook, setCurBook] = useState({ name: '', description: '' });
@@ -73,9 +75,7 @@ function EditBook() {
 
     return (
         <div>
-            <h1>bookId here{bookId}</h1>
             <h2>{curBook.name}</h2>
-
             <textarea
                 rows="5"
                 cols="50"

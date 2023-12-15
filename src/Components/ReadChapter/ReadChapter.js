@@ -8,10 +8,9 @@ import { useParams } from 'react-router-dom';
 function ReadChapter() {
 
     const { chapterId } = useParams();
-    //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
+    const BASE_API = process.env.REACT_APP_API_BASE;
+    const CHAPTER_API_BASE = `${BASE_API}/api/chapters/`;
 
-    //const BOOKS_API_BASE = "http://localhost:56100/api/books/";
-    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
 
     const [curChapter, setCurChapter] = useState({ chapterContent: '', chapterName: '' });
 
@@ -33,7 +32,7 @@ function ReadChapter() {
     return (
         <div>
 
-            <h5>curChapter.chapterName</h5>
+            <h5>{curChapter.chapterName}</h5>
             <p>{curChapter.chapterContent}</p>
         </div>
     );

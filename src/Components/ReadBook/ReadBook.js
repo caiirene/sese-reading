@@ -11,9 +11,10 @@ function ReadBook() {
 
     const { bookId } = useParams();
     console.log(bookId);
-
-    const BOOKS_API_BASE = "https://sese-reading-node.onrender.com/api/books/";
-    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
+    
+    const BASE_API = process.env.REACT_APP_API_BASE;
+    const BOOKS_API_BASE = `${BASE_API}/api/books/`;
+    const CHAPTER_API_BASE = `${BASE_API}/api/chapters/`;
 
     const [curBook, setCurBook] = useState({ name: '', description: '' });
 

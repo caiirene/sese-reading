@@ -10,10 +10,9 @@ import { useParams } from 'react-router-dom';
 function EditChapter() {
 
     const { chapterId } = useParams();
-    //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
 
-    //const BOOKS_API_BASE = "http://localhost:56100/api/books/";
-    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
+    const BASE_API = process.env.REACT_APP_API_BASE;
+    const CHAPTER_API_BASE = `${BASE_API}/api/chapters/`;
 
     const [curChapter, setCurChapter] = useState({ chapterContent: '', chapterName: '' });
 
@@ -46,7 +45,7 @@ function EditChapter() {
     const navigateToEditBook = (bookId) => {
         // 导航到 '/editbook/:bookId' 路径
         navigate(`/editbook/${bookId}`);
-      };
+    };
 
     return (
         <div>
@@ -62,7 +61,7 @@ function EditChapter() {
                 value={curChapter.chapterContent}
             />
 
-            <button onClick={()=>updatechapter()}
+            <button onClick={() => updatechapter()}
                 className="w-100 btn btn-danger mb-2">
                 change chapter content
             </button>
