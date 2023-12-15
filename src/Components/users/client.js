@@ -2,19 +2,18 @@ import axios from "axios";
 const request = axios.create({
   withCredentials: true,
 });
-// export const BASE_API =
+export const BASE_API = process.env.REACT_APP_API_BASE;
 
-//   process.env.REACT_APP_API_BASE || 'http://localhost:56100';
-
-  export const BASE_API ='https://sese-reading-node.onrender.com';
-
+// 'https://sese-reading-node.onrender.com' || "http://localhost:56100"
 export const USERS_API = `${BASE_API}/api/users`;
+
 export const signin = async (credentials) => {
   const response = await request.post(`${USERS_API}/signin`, credentials);
   return response.data;
 };
 export const account = async () => {
   const response = await request.post(`${USERS_API}/account`);
+  //console.log("client account",response.data)
   return response.data;
 };
 export const updateUser = async (user) => {
@@ -30,8 +29,9 @@ export const createUser = async (user) => {
   return response.data;
 };
 export const findUserById = async (id) => {
-  console.log("findUserById",id);
+  //console.log("findUserById",id);
   const response = await request.get(`${USERS_API}/${id}`);
+  //console.log("findUserById",response.data);
   return response.data;
 };
 export const deleteUser = async (user) => {

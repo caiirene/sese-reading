@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_API = "http://localhost:56100"; 
+// 'https://sese-reading-node.onrender.com' || "http://localhost:56100"
+const BASE_API = process.env.REACT_APP_API_BASE; 
 
 const COMMENTS_API = `${BASE_API}/api/comments`;
 
@@ -26,9 +27,7 @@ export const findAllComments = async () => {
 
 export const findCommentByUserId = async (readerId) => {
   try {
-    console.log(readerId)
     const response = await axios.get(`${COMMENTS_API}/user`, { params: { readerId: readerId } });
-    console.log(response)
     return response.data;
   } catch (error) {
     console.error(`Error fetching comments with user's ID ${readerId}:`, error);

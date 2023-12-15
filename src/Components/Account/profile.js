@@ -55,11 +55,14 @@ function Profile() {
           <div className="card" style={{ width: "18rem" }}>
             <div className="card-body">
               <h5 className="card-title">Account Information</h5>
-              <label className="fw-bold">Username</label>
+              <label className="fw-bold">User Name</label>
               <p className="card-text">{account.username}</p>
+              <label className="fw-bold">First Name</label>
+              <p className="card-text">{account.firstName}</p>
+              <label className="fw-bold">Last Name</label>
+              <p className="card-text">{account.lastName}</p>
               <label className="fw-bold">Email</label>
               <p className="card-text">{account.email}</p>
-              {/* Add other profile information as needed */}
               <div className="text-center mt-4">
                 <Link to="/account" className="btn btn-primary">
                   Edit Information

@@ -119,13 +119,15 @@ function NavBar() {
         {user === null ? (
           <div className="d-flex">
             <ul className="navbar-nav ms-auto">
-              <Link to="/signin" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
-                Sign In
-              </Link>
               <li className="nav-item btn btn-info ms-2">
-              <Link to="/signup" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
+              <NavLink to="/signin" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
+                Sign In
+              </NavLink>
+              </li>
+              <li className="nav-item btn btn-info ms-2">
+              <NavLink to="/signup" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
                 Sign up
-              </Link>
+              </NavLink>
               </li>
             </ul>
           </div>

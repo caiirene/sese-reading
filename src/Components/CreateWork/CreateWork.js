@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DefaultImage from '../ToolImages/defaultimage.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import './CreateWork.css';
+import * as client from "../users/client";
+import {createBook} from "../books/client";
 
 const CreateBook = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [introduction, setIntroduction] = useState('');
+  const [name, setName] = useState('');
+  const [authorName, setAuthorName] = useState('');
+  const [description, setDesciption] = useState('');
   const [coverImage, setCoverImage] = useState(DefaultImage);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const [account, setAccount] = useState(null);
+  const userData = localStorage.getItem("currentUser");
+  const userObj = userData ? JSON.parse(userData) : null;
+  const [user, setUser] = useState(userObj);
+
+  const findUserById = async (id) => {
+    const user = await client.findUserById(id);
+    setAccount(user);
+  };
+
+  useEffect(() => {
+    findUserById(user?._id);
+  }, []);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -24,24 +39,32 @@ const CreateBook = () => {
     }
   };
 
-  const handleSaveBook = () => {
-    const data = {
-      title,
-      author,
-      introduction,
-      coverImage
-    };
-
-    axios.post('https://localhost:56100/books', data)
-      .then(() => {
-        enqueueSnackbar('Book Created successfully', { variant: 'success' });
-        navigate('/');
-      })
-      .catch((error) => {
-        enqueueSnackbar('Error', { variant: 'error' });
-        console.log(error);
-      });
+  const handleSaveBook = async () => {
+    try {
+      const author = account?._id;
+      if (!author) {
+        enqueueSnackbar('User ID not found', { variant: 'error' });
+        return;
+      }
+  
+      const data = {
+        name,
+        authorName,
+        description,
+        coverImage,
+        author, 
+      };
+  
+      const createdBook = await createBook(data);
+      console.log('Created Book:', createdBook);
+      enqueueSnackbar('Book Created successfully', { variant: 'success' });
+      navigate('/myworks');
+    } catch (error) {
+      enqueueSnackbar('Error', { variant: 'error' });
+      console.log(error);
+    }
   };
+  
 
   return (
     <div className='create-book-container'>
@@ -66,8 +89,8 @@ const CreateBook = () => {
           <label className='input-label'>Title</label>
           <input
             type='text'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className='text-input'
             placeholder='Enter book title, within 15 words, please do not add special symbols such as book titles.'
           />
@@ -78,8 +101,8 @@ const CreateBook = () => {
           <label className='input-label'>Author</label>
           <input
             type='text'
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            value={authorName}
+            onChange={(e) => setAuthorName(e.target.value)}
             className='text-input'
             placeholder='Enter author name'
           />
@@ -90,8 +113,8 @@ const CreateBook = () => {
           <label className='input-label'>Introduction</label>
           <input
             type='text'
-            value={introduction}
-            onChange={(e) => setIntroduction(e.target.value)}
+            value={description}
+            onChange={(e) => setDesciption(e.target.value)}
             className='text-input'
             placeholder='Enter introduction, within 500 words.'
           />
