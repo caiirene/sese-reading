@@ -41,6 +41,11 @@ function NavBar() {
     setUser(null);
     navigate("/");
   };
+  const signIn = async () => {
+    navigate("/signin");
+  };
+  const signUp = async () => {
+  };
 
   // const handleSignup = async (signupData) => {
   //   try {
