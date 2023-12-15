@@ -88,22 +88,22 @@ function BookCard() {
             <button className="image-button">
               🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popularity
             </button>
-            <div className="button-text">Weekly Click {getRandomNumber()}</div>
-            <div className="button-text">Monthly Click {getRandomNumber()}</div>
+            <div className="button-text">Weekly Click 996</div>
+            <div className="button-text">Monthly Click 3423</div>
           </div>
           <div className="button-and-text">
             <button className="image-button">
               🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reward
             </button>
-            <div className="button-text">Weekly Click {getRandomNumber()}</div>
-            <div className="button-text">Monthly Click {getRandomNumber()}</div>
+            <div className="button-text">Weekly Click 23</div>
+            <div className="button-text">Monthly Click 87</div>
           </div>
           <div className="button-and-text">
             <button className="image-button">
               🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment
             </button>
-            <div className="button-text">Weekly Click {getRandomNumber()}</div>
-            <div className="button-text">Monthly Click {getRandomNumber()}</div>
+            <div className="button-text">Weekly Click 89</div>
+            <div className="button-text">Monthly Click 900</div>
           </div>
         </div>
         <div className="book-card-paragraphs">
@@ -115,7 +115,7 @@ function BookCard() {
           <div className="book-card-action-buttons">
             <button className="action-button"
             onClick={()=>navigateToReadBook(bookId)}>Start Reading</button>
-            <button className="action-button">Add to book shelf</button>
+            {/* <button className="action-button">Add to book shelf</button> */}
           </div>
           <br></br>
           <p>
