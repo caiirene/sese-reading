@@ -25,8 +25,8 @@ import { Provider } from "react-redux";
 import Profile from "./Components/Account/profile";
 import BookAdmin from "./Components/BookAdmin/bookadmin";
 import AuthorProfile from "./Components/Account/authorProfile";
-import ReadChapter from "./Components/ReadChapter/ReadChapter";
 import ReadBook from "./Components/ReadBook/ReadBook";
+import ReadChapter from "./Components/ReadChapter/ReadChapter";
 
 function App() {
   return (
