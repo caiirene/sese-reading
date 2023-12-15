@@ -11,9 +11,9 @@ import { useParams } from 'react-router-dom';
 function CreateChapter() {
 
     const { bookId } = useParams();
-    //const BASE_API = process.env.REACT_APP_API_BASE || "http://localhost:56100";
+    const BASE_API = process.env.REACT_APP_API_BASE; 
 
-    const CHAPTER_API_BASE = "https://sese-reading-node.onrender.com/api/chapters/";
+    const CHAPTER_API_BASE = `${BASE_API}/api/chapters/`;
 
     const [curAccount, setAccount] = useState({ username: "" })
 
@@ -46,7 +46,7 @@ function CreateChapter() {
 
     return (
         <div>
-            <h1>chapterId here</h1>
+
             <input
                 onChange={(e) => setNewChapter({ ...newChapter, chapterName: e.target.value })}
                 className="form-control" type="text" value={newChapter.chapterName} />

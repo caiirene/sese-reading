@@ -3,6 +3,7 @@ import BookImage from "../BookImages/book-image.png";
 import React, { useEffect, useState } from "react";
 import * as client from "../books/client";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill }
   from "react-icons/bs";
 import axios from "axios";
@@ -12,11 +13,12 @@ function BookCard() {
   const { bookId } = useParams();
   const [book, setBook] = useState(null);
   const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
 
   const userData = localStorage.getItem("currentUser");
   const userObj = JSON.parse(userData);
   const [user, setUser] = useState(userObj);
-  const [comment, setComment] = useState({readerId: userObj?._id, bookId: bookId});
+  const [comment, setComment] = useState({ readerId: userObj?._id, bookId: bookId });
   // , readerName: userObj.name 
   const createComment = async () => {
     try {
@@ -45,6 +47,11 @@ function BookCard() {
     }
   };
 
+  const navigateToReadBook = (bookid) => {
+    // 导航到 '/editbook/:bookId' 路径
+    navigate(`/readbook/${bookid}`);
+  };
+
 
   useEffect(() => {
     fetchBookDetails();
@@ -68,7 +75,7 @@ function BookCard() {
           <div className="book-card-details">
             <h1 className="book-card-title">{book.name}</h1>
             <p className="card-text">
-              Author: 
+              Author:
               <Link to={`/author/${book.author}`}>
                 {book.authorName}
               </Link>
@@ -81,22 +88,22 @@ function BookCard() {
             <button className="image-button">
               🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popularity
             </button>
-            <div className="button-text">Weekly Click {getRandomNumber()}</div>
-            <div className="button-text">Monthly Click {getRandomNumber()}</div>
+            <div className="button-text">Weekly Click 996</div>
+            <div className="button-text">Monthly Click 3423</div>
           </div>
           <div className="button-and-text">
             <button className="image-button">
               🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reward
             </button>
-            <div className="button-text">Weekly Click {getRandomNumber()}</div>
-            <div className="button-text">Monthly Click {getRandomNumber()}</div>
+            <div className="button-text">Weekly Click 23</div>
+            <div className="button-text">Monthly Click 87</div>
           </div>
           <div className="button-and-text">
             <button className="image-button">
               🔥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment
             </button>
-            <div className="button-text">Weekly Click {getRandomNumber()}</div>
-            <div className="button-text">Monthly Click {getRandomNumber()}</div>
+            <div className="button-text">Weekly Click 89</div>
+            <div className="button-text">Monthly Click 900</div>
           </div>
         </div>
         <div className="book-card-paragraphs">
@@ -106,70 +113,71 @@ function BookCard() {
             <span>{book.description}</span>
           </p>
           <div className="book-card-action-buttons">
-          <button className="action-button">Start Reading</button>
-          <button className="action-button">Add to book shelf</button>
-        </div>
-        <br></br>
+            <button className="action-button"
+            onClick={()=>navigateToReadBook(bookId)}>Start Reading</button>
+            {/* <button className="action-button">Add to book shelf</button> */}
+          </div>
+          <br></br>
           <p>
             <h4><strong>Leave Comment</strong></h4>
             <br />
             {user && (<div><div class="col">
-              <input className="w-75 form-control"  
-              defaultValue=""
-              onChange={(e) => {
-                e.preventDefault();
-                setComment({ ...comment, comment: e.target.value })
-                }}/>
-              </div>
+              <input className="w-75 form-control"
+                defaultValue=""
+                onChange={(e) => {
+                  e.preventDefault();
+                  setComment({ ...comment, comment: e.target.value })
+                }} />
+            </div>
               <button className="w-75 action-button" onClick={createComment}>
                 Submit
               </button></div>)}
-            
+
             {user === null && (
               <div>
-                Please <Link to="/signin">log in</Link> to add comment. 
+                Please <Link to="/signin">log in</Link> to add comment.
               </div>
             )}
 
-              
+
             <div className="text-center">
               <br></br><br></br>
-            <h3 className = "tableTitleStyle">Recent Comments</h3>
-            <table className="table mx-auto">
-              <thead>
-                <tr>
-                  <td className = "tableHeaderStyle">Comment</td>
-                  <td className = "tableHeaderStyle">Time</td>
-                </tr>
-              </thead>
-              <tbody>
-              {comments.map((object) => (
-                <tr key ={object?._id} >
-                  <td>
-                    {object.comment} 
-                  </td>
-                  <td>
-                    {object.timestamp}
-                  </td>
-                  <td>
-                    {object.readerId}
-                  </td>
-                  <td>
-                    {object.bookId}
-                  </td>
-                </tr>
-                
-              ))}
-              </tbody>
-            </table>
-          </div>
+              <h3 className="tableTitleStyle">Recent Comments</h3>
+              <table className="table mx-auto">
+                <thead>
+                  <tr>
+                    <td className="tableHeaderStyle">Comment</td>
+                    <td className="tableHeaderStyle">Time</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comments.map((object) => (
+                    <tr key={object?._id} >
+                      <td>
+                        {object.comment}
+                      </td>
+                      <td>
+                        {object.timestamp}
+                      </td>
+                      <td>
+                        {object.readerId}
+                      </td>
+                      <td>
+                        {object.bookId}
+                      </td>
+                    </tr>
+
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </p>
         </div>
 
       </div>
       <div className="book-card-details"></div>
     </div>
-  
+
   );
 }
 

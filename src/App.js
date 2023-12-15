@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import "./App.css";
 import { useEffect, useState } from "react";
 import Home from "./Containers/Home/Home";
@@ -25,17 +26,21 @@ import { Provider } from "react-redux";
 import Profile from "./Components/Account/profile";
 import BookAdmin from "./Components/BookAdmin/bookadmin";
 import AuthorProfile from "./Components/Account/authorProfile";
+import ReadBook from "./Components/ReadBook/ReadBook";
+import ReadChapter from "./Components/ReadChapter/ReadChapter";
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <HashRouter>
         <div className="App">
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<BookList />} />
             <Route path="/book/:bookId" element={<BookCard />} />
+            <Route path="/readchapter/:chapterId" element={<ReadChapter />} />
+            <Route path="/readbook/:bookId" element={<ReadBook />} />
 
             <Route path="/authorzone" element={<AuthorZone />} />
             <Route path="/myworks" element={<Myworks />} />
@@ -67,7 +72,7 @@ function App() {
 
           </Routes>
         </div>
-      </Router>
+      </HashRouter>
     </Provider>
   );
 }

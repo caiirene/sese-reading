@@ -86,7 +86,7 @@ function UserTable() {
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
-              <Link to={`/project/account/${user._id}`}>
+              <Link to={`/profile/${user._id}`}>
                 {user.username}
               </Link>
               <td>{user.password}</td>

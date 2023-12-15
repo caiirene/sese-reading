@@ -51,21 +51,28 @@ function BookAdmin() {
           <div
             key={book._id}
             className="col-auto ms-5 mt-4 mb-4"
-            style={{ width: "260px" }}
+            style={{ width: "230px" }}
           >
             <div className="card h-100">
               <div
-                style={{ backgroundColor: "#a183d7", height: "150px" }} 
+                style={{
+                  backgroundImage: `url(${book.coverImage})`,
+                  backgroundSize: "60%",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  height: "180px",
+                  border: "1px solid #ddd",
+                }}
               ></div>
-              <div className="card-body">
+              <div
+                className="card-body bg-body-tertiary"
+                style={{ height: "130px" }}
+              >
                 <Link to={`../book/${book._id}`}>
-                  <h5 className="card-title">{book.name}</h5>
+                  <h6 className="card-title mt-1 text-center">{book.name}</h6>
                 </Link>
-
-                <p className="card-text">
-                  {book.name}
-                  <br />
-                  <button
+                <div>
+                  <button className="btn btn-primary me-2 btn-sm"
                     onClick={(event) => {
                       event.preventDefault();
                       deleteBook(book);
@@ -73,21 +80,12 @@ function BookAdmin() {
                   >
                     Delete
                   </button>
-                  <button
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setBook(book);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </p>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
-
     </div>
   );
 }

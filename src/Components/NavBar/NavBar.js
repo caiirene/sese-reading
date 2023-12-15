@@ -5,8 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Logo from "./WebLogo.png";
 
 function NavBar() {
+
+  const [logo,setLogo] = useState(Logo);
 
   const getInitialUser = () => {
     const storedUser = localStorage.getItem("currentUser");
@@ -41,29 +44,12 @@ function NavBar() {
     setUser(null);
     navigate("/");
   };
-
-  // const handleSignup = async (signupData) => {
-  //   try {
-  //     const response = await fetch('/api/signup', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(signupData),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Signup failed');
-  //     }
-
-  //     const userData = await response.json();
-  //     localStorage.setItem('currentUser', JSON.stringify(userData));
-  //     setUser(userData); // Update the user state
-  //     navigate('/'); // Optionally redirect the user
-  //   } catch (error) {
-  //     console.error('There was an error during signup:', error);
-  //   }
-  // };
+  const signIn = async () => {
+    navigate("/signin");
+  };
+  const signUp = async () => {
+    navigate("/signup");
+  };
 
 
   const renderNavLinks = () => {
@@ -102,46 +88,77 @@ function NavBar() {
 
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#e3f2fd", fontFamily: "'Open Sans', sans-serif" }}>
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          LOGO NAME
-        </a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+  <div className="container-fluid">
+    <img src={logo} width="45" height="45" className="navbar-brand"/>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="nav nav-underline" style={{ display: 'flex', justifyContent: 'flex-start' }}>
-            {renderNavLinks()}
-          </ul>
-        </div>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
 
-        {user === null ? (
-          <div className="d-flex">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item btn btn-info ms-2">
-              <NavLink to="/signin" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
-                Sign In
-              </NavLink>
-              </li>
-              <li className="nav-item btn btn-info ms-2">
-              <NavLink to="/signup" className="nav-link flow-end btn btn-info" style={{ marginRight: '20px' }}>
-                Sign up
-              </NavLink>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <div className="d-flex">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item flow-end btn btn-info">
-                <a className="nav-link" onClick={signOut}>Sign Out</a>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
-    </nav>
+    <div className="collapse navbar-collapse" id="navbarNav">
+      <ul className="navbar-nav mr-auto">
+        {renderNavLinks()}
+      </ul>
+    </div>
+
+    <div className="d-flex">
+      {user === null ? (
+        <ul className="navbar-nav ms-auto">
+          <li className="nav-item">
+            <a className="nav-link btn btn-info ms-2" onClick={signIn}>Sign In</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link btn btn-info ms-2" onClick={signUp}>Sign up</a>
+          </li>
+        </ul>
+      ) : (
+        <ul className="navbar-nav ms-auto">
+          <li className="nav-item">
+            <a className="nav-link btn btn-info" onClick={signOut}>Sign Out</a>
+          </li>
+        </ul>
+      )}
+    </div>
+  </div>
+</nav>
+
+    // <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#e3f2fd", fontFamily: "'Open Sans', sans-serif" }}>
+    //   <div className="container-fluid">
+
+    //   <img src={logo} width="45" height="45"/>
+
+    //     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    //       <span className="navbar-toggler-icon"></span>
+    //     </button>
+
+    //     <div className="collapse navbar-collapse" id="navbarNav">
+    //       <ul className="nav nav-underline" style={{ display: 'flex', justifyContent: 'flex-start' }}>
+    //         {renderNavLinks()}
+    //       </ul>
+    //     </div>
+
+    //     {user === null ? (
+    //       <div className="d-flex">
+    //         <ul className="navbar-nav ms-auto">
+    //           <li className="nav-item btn btn-info ms-2">
+    //           <li className="nav-link" onClick={signIn}>Sign In</li>
+    //           </li>
+    //           <li className="nav-item btn btn-info ms-2">
+    //           <li className="nav-link" onClick={signUp}>Sign up</li>
+    //           </li>
+    //         </ul>
+    //       </div>
+    //     ) : (
+    //       <div className="d-flex">
+    //         <ul className="navbar-nav ms-auto">
+    //           <li className="nav-item flow-end btn btn-info">
+    //             <li className="nav-link" onClick={signOut}>Sign Out</li>
+    //           </li>
+    //         </ul>
+    //       </div>
+    //     )}
+    //   </div>
+    // </nav>
   );
 }
 
