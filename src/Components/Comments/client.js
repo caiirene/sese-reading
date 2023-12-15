@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_API = "http://localhost:56100"; 
+const BASE_API = 'https://sese-reading-node.onrender.com'; 
 
 const COMMENTS_API = `${BASE_API}/api/comments`;
 
