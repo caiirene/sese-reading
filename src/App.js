@@ -8,6 +8,7 @@ import BookShowcase from "./Components/BookShowcase/BookShowcase";
 import AuthorZone from "./Components/AuthorZone/AuthorZone";
 import Myworks from "./Components/Myworks/Myworks";
 import EditBook from "./Components/EditBook/EditBook";
+import EditChapter from './Components/EditChapter/EditChapter';
 import CreateWork from "./Components/CreateWork/CreateWork";
 import CreateChapter from "./Components/CreateChapter/CreateChapter";
 import BookShowcaseAdministrators from "./Components/BookShowcaseAdministrators/BookShowcaseAdministrators";
