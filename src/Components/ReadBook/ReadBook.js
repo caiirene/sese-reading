@@ -25,7 +25,7 @@ function ReadBook() {
             const response = await axios.get(`${BOOKS_API_BASE}${bookId}`);
             setCurBook(response.data);
         } catch (error) {
-            console.error("Error fetching books in <EditBook/> fetchBook:", error);
+            console.error("Error fetching books in <ReadBook/> fetchBook:", error);
         }
     };
 
