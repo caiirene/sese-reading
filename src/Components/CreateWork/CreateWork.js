@@ -10,7 +10,6 @@ const CreateBook = () => {
   const BOOKS_API_BASE = "http://localhost:4000/api/books/";
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [coverImage, setCoverImage] = useState(DefaultImage);
   const [account, setAccount] = useState(null); // Account state to store user data
 
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ const CreateBook = () => {
 
   return (
     <div className='create-book-container'>
-
+    <h1 className='create-book-title'>Create Book</h1>
       {/* Title Input */}
       <div className='input-container'>
           <label className='input-label'>Title</label>
