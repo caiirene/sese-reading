@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { BsFillCheckCircleFill, BsPencil, BsTrash3Fill, BsPlusCircleFill }
   from "react-icons/bs";
 import axios from "axios";
-import { findCommentByBookId, findAllComments, addComment } from "../Comments/client";
+import { findCommentByBookId, findAllComments, addComment, formatDate } from "../Comments/client";
 //import { findUserById } from "../users/client";
 function BookCard() {
   const { bookId } = useParams();
@@ -157,13 +157,7 @@ function BookCard() {
                         {object.comment}
                       </td>
                       <td>
-                        {object.timestamp}
-                      </td>
-                      <td>
-                        {object.readerId}
-                      </td>
-                      <td>
-                        {object.bookId}
+                        {formatDate(object.timestamp)}
                       </td>
                     </tr>
 

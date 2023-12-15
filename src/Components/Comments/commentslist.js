@@ -1,11 +1,12 @@
 import * as client from "../users/client";
 import { useState, useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import { findCommentByUserId, deleteComment} from "./client";
+import { findCommentByUserId, deleteComment, formatDate} from "./client";
 import { FaBook } from "react-icons/fa";
 
 
 function CommentsList() {
+  
   const { id } = useParams();
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
@@ -34,6 +35,8 @@ function CommentsList() {
       console.log(err);
     }
   }
+
+  
 
 
   useEffect(() => {
@@ -82,7 +85,7 @@ function CommentsList() {
                     {object.comment} 
                   </td>
                   <td>
-                    {object.timestamp}
+                    {formatDate(object.timestamp)}
                   </td>
                   <td>
                     <button className="btn btn-danger"  onClick={() => handleDelete(object?._id)}>Delete</button>
